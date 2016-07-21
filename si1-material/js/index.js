@@ -10,5 +10,5 @@ $(document).ready( function(){
   $("#register-btn").click( function() {
     alert("Registrado");
   });
-
+  
 });

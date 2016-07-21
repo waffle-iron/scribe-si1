@@ -20,11 +20,11 @@
               <md-tab label="Entrar" id="entrar-tab">
                 <md-content class="md-padding">
                   <h1 class="md-display-1">Entrar</h1>
-                  <form name="loginForm">
+                  <form name="loginForm" id="loginForm">
                       <md-input-container class="md-block">
                         <label>E-mail</label>
                         <input required type="email" name="loginEmail" ng-model="login.loginEmail"
-                               minlength="5" maxlength="50" ng-pattern="/^.+@.+\..+$/" />
+                               minlength="5" maxlength="50" ng-pattern="/^.+@.+\..+$/"/>
                         <div ng-messages="loginForm.loginEmail.$error" role="alert">
                           <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
                             E-mail necessário. Precisa ter tamanho entre 5 e 50.
@@ -51,7 +51,7 @@
               <md-tab label="Registrar" id="registrar-tab">
                 <md-content class="md-padding">
                   <h1 class="md-display-1">Registrar</h1>
-                  <form name="registerForm">
+                  <form name="registerForm" id="registerForm">
 
                     <md-input-container class="md-block">
                       <label>Nome</label>
