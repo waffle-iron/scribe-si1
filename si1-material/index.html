@@ -16,14 +16,14 @@
 
       <div layout="row" layout-align="center" layout-xs="column">
         <div flex="100">
-            <md-tabs md-stretch-tabs="always" md-dynamic-height md-border-bottom>
-              <md-tab label="Entrar" id="entrar-tab">
+            <md-tabs md-stretch-tabs="always" md-dynamic-height md-border-bottom >
+              <md-tab label="Entrar" id="login-form">
                 <md-content class="md-padding">
                   <h1 class="md-display-1">Entrar</h1>
-                  <form name="loginForm" id="loginForm">
+                  <form name="loginForm">
                       <md-input-container class="md-block">
                         <label>E-mail</label>
-                        <input required type="email" name="loginEmail" ng-model="login.loginEmail"
+                        <input required type="email" id="login-email" name="loginEmail" ng-model="login.loginEmail"
                                minlength="5" maxlength="50" ng-pattern="/^.+@.+\..+$/"/>
                         <div ng-messages="loginForm.loginEmail.$error" role="alert">
                           <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
@@ -34,28 +34,28 @@
 
                       <md-input-container class="md-block">
                         <label>Senha</label>
-                        <input required type="password" name="loginPassword" ng-model="login.loginPassword">
+                        <input required type="password" id="login-password" name="loginPassword" ng-model="login.loginPassword">
                         <div ng-messages="loginForm.loginPassword.$error">
                           <div ng-message="required">Senha necessária.</div>
                         </div>
                       </md-input-container>
                     </form>
 
-                    <md-checkbox class="md-primary">Lembrar </md-checkbox>
+                    <md-checkbox class="md-primary" id="login-check">Lembrar </md-checkbox>
                     <md-button id="login-btn" ng-disabled="loginForm.$invalid" class="custom-btn md-primary">Entrar </md-button>
-                    <md-button id="pwd-forgot" class="custom-btn md-warn">Esqueceu a senha? </md-button>
+                    <md-button id="login-forgot" class="custom-btn md-warn">Esqueceu a senha? </md-button>
 
 
                 </md-content>
               </md-tab>
-              <md-tab label="Registrar" id="registrar-tab">
+              <md-tab label="Registrar" id="register-form">
                 <md-content class="md-padding">
                   <h1 class="md-display-1">Registrar</h1>
-                  <form name="registerForm" id="registerForm">
+                  <form name="registerForm">
 
                     <md-input-container class="md-block">
                       <label>Nome</label>
-                      <input required type="text" name="registerName" ng-model="register.registerName">
+                      <input required type="text" id="register-name" name="registerName" ng-model="register.registerName">
                       <div ng-messages="registerForm.registerName.$error">
                         <div ng-message="required">Insira um nome válido.</div>
                       </div>
@@ -63,7 +63,7 @@
 
                       <md-input-container class="md-block">
                         <label>E-mail</label>
-                        <input required type="email" name="registerEmail" ng-model="register.registerEmail"
+                        <input required type="email" id="register-email" name="registerEmail" ng-model="register.registerEmail"
                                minlength="5" maxlength="50" ng-pattern="/^.+@.+\..+$/" />
                         <div ng-messages="registerForm.registerEmail.$error" role="alert">
                           <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
@@ -74,7 +74,7 @@
 
                       <md-input-container class="md-block">
                         <label>Senha</label>
-                        <input required type="password" name="registerPassword" ng-model="register.registerPassword">
+                        <input required type="password" id="register-password" name="registerPassword" ng-model="register.registerPassword">
                         <div ng-messages="registerForm.registerPassword.$error">
                           <div ng-message="required">Insira uma senha válida.</div>
                         </div>
@@ -82,7 +82,7 @@
 
                       <md-input-container class="md-block">
                         <label>Confirmar Senha</label>
-                        <input required type="password" name="registerPasswordConfirm" ng-model="register.registerPasswordConfirm"
+                        <input required type="password" id="register-prasswordC" name="registerPasswordConfirm" ng-model="register.registerPasswordConfirm"
                         compare-to="register.registerPassword">
                         <div ng-messages="registerForm.registerPasswordConfirm.$error">
                           <div ng-message="required">Insira uma senha válida.</div>
