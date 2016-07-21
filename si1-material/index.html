@@ -2,7 +2,7 @@
 <html ng-app="myApp">
   <head>
     <meta charset="utf-8">
-    <title>Hi</title>
+    <title>Scribe - Online Text Editor</title>
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
     <link rel="stylesheet" href="css/tabs.css">
   </head>
@@ -82,12 +82,11 @@
 
                       <md-input-container class="md-block">
                         <label>Confirmar Senha</label>
-                        <input required type="password" name="registerPasswordConfirm"
-                        ng-model="register.registerPasswordConfirm">
-                        <div ng-messages="registerForm.registerPasswordConfirm.$error"
-                        ng-show="registerForm.registerPasswordConfirm.$touched || registerForm.registerPasswordConfirm.$submitted">
+                        <input required type="password" name="registerPasswordConfirm" ng-model="register.registerPasswordConfirm"
+                        compare-to="register.registerPassword">
+                        <div ng-messages="registerForm.registerPasswordConfirm.$error">
                           <div ng-message="required">Insira uma senha válida.</div>
-                          <div ng-message="noMatch">As senhas não correspondem.</div>
+                          <div ng-message="compareTo">As senhas não correspondem.</div>
                         </div>
                       </md-input-container>
 

@@ -1,13 +1,20 @@
-app.directive('validPasswordC', function() {
-  return {
-    require: 'ngModel',
-    link: function(scope, elm, attrs, ctrl) {
-      console.log("entro!!!");
-      ctrl.$parsers.unshift(function(viewValue, $scope) {
-        var noMatch = viewValue != scope.myForm.password.$viewValue;
-        console.log("noMatch: " + noMatch);
-        ctrl.$setValidity('noMatch', !noMatch);
-      })
-    }
-  }
-});
+var compareTo = function() {
+    return {
+        require: "ngModel",
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel) {
+
+            ngModel.$validators.compareTo = function(modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+
+            scope.$watch("otherModelValue", function() {
+                ngModel.$validate();
+            });
+        }
+    };
+};
+
+app.directive("compareTo", compareTo);
