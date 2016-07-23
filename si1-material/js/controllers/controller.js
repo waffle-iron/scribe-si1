@@ -2,7 +2,16 @@ app.controller('MainCtrl', function($scope){
 
 });
 
-app.controller('ListCtrl', function($scope, $mdDialog){
+app.controller('FabCtrl', function($scope) {
+    $scope.isOpen = false;
+  }
+);
+
+var currentDoc = null;
+
+app.controller('ListCtrl', function($scope){
+
+  $scope.currentDocument;
 
   $scope.options = [
     { name: 'Compartilhar' , index: 1, icon: 'share', func: 'shareDoc(folder.documents, document.id)'},
@@ -23,18 +32,23 @@ app.controller('ListCtrl', function($scope, $mdDialog){
     { name: 'Textos 3', documents: [] }
   ];
 
-  $scope.announceClick = function(index) {
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title('You clicked!')
-        .textContent('You clicked the menu item at index ' + index )
-        .ok('Nice')
-    );
+  $scope.createDoc = function(folderDocuments) {
+    if (folderDocuments != undefined){
+      folderDocuments.push({ name: 'teste', format: 'txt', text: 'Loren ipsun dowk dodkl20'});
+      }
   };
 
+  $scope.docClicked = function (document){
+    currentDoc = document;
+    $scope.currentDocument = currentDoc;
+  };
 
-  $scope.createDoc = function(folderDocuments) {
-    folderDocuments.push({ name: 'teste1',format: 'txt', text: 'Loren ipsun dowk dodkl20'});
+  $scope.isDocClicked = function() {
+    return !(currentDoc === null);
+  };
+
+  $scope.getDocument = function() {
+    return $scope.currentDocument;
   };
 
 });

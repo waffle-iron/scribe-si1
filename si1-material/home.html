@@ -9,33 +9,33 @@
 
   </head>
 
-<body class="docs-body" layout="row" ng-cloak ng-controller="AppCtrl">
+<body class="docs-body layout-row" layout="row" ng-cloak ng-controller="AppCtrl">
 
     <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" hide-print
                 md-is-locked-open="$mdMedia('gt-sm')">
 
     <header class="nav-header">
-      <a ng-href="#" class="docs-logo">
-        <h1 class="docs-logotype md-heading">Scribe</h1>
-      </a>
+      <h2>
+        <span>Scribe</span>
+      </h2>
     </header>
 
     <md-content flex role="navigation">
       <md-list ng-controller="ListCtrl" ng-cloak>
         <md-divider></md-divider>
-            <md-subheader class="md-no-sticky min-size-header">
+            <md-subheader class="md-no-sticky resize-subheader ">
               <div layout="row" layout-wrap>
                 <div flex="80">
-                  <md-select placeholder="Selecionar pasta" name="folder" ng-model="folder">
+                  <md-select class="select-fix" placeholder="Selecionar pasta" name="folder" ng-model="folder">
                     <md-option ng-value="folder" ng-repeat="folder in mainFolders">{{folder.name}}</md-option>
                   </md-select>
                 </div>
-              <div flex="19" class="item-selector-icon">
-                <i class="material-icons" flex="30">folder</i>
+                <div flex="19" class="item-selector-icon">
+                  <i class="material-icons" flex="30">folder</i>
+                </div>
               </div>
-            </div>
             </md-subheader>
-          <md-list-item class="item-size" ng-click="navigateTo('data usage', $event)">
+          <md-list-item class="item-size" ng-click="createDoc(folder.documents)">
             <p> Novo documento</p>
             <md-button class="md-icon-button" ng-click="createDoc(folder.documents)" aria-label="More">
               <i class="material-icons item-icon">add</i>
@@ -45,15 +45,16 @@
 
           <md-divider></md-divider>
 
-          <md-list-item class="item-size" ng-click="navigateTo('data usage', $event)" ng-repeat="document in folder.documents">
+          <md-list-item class="item-size" ng-repeat="document in folder.documents" ng-click="docClicked(document)">
             <i class="material-icons item-icon">insert_drive_file</i>
             <p> {{ document.name }}.{{ document.format }}</p>
           </md-list-item>
+        </md-list>
     </md-content>
 
     </md-sidenav>
 
-    <div layout="column" tabIndex="-1" role="main" flex>
+    <div layout="column" tabIndex="-1" role="main" flex ng-controller="ListCtrl">
       <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
 
         <div class="md-toolbar-tools docs-toolbar-tools" tabIndex="-1">
@@ -62,20 +63,43 @@
           </md-button>
           <div layout="row" flex class="fill-height">
             <h2 class="md-toolbar-item md-breadcrumb md-headline">
-              <span ng-if="menu.currentPage.name !== menu.currentSection.name">
-                <span class="docs-menu-separator-icon" hide-sm hide-md style="transform: translate3d(0, 1px, 0)">
-                  <span class="_md-visually-hidden">-</span>
-                </span>
-              </span>
               <span class="md-breadcrumb-page">Scribe - Text Manager</span>
             </h2>
-
-            <span flex></span> <!-- use up the empty space -->
-
           </div>
-        </div>
 
+          <span flex></span>
+          <md-button class="md-raised">
+            Sair
+          </md-button>
+        </div>
       </md-toolbar>
+
+      <md-content md-scroll-y="" ng-show="isDocClicked()" flex>
+        <md-toolbar class="md-menu-toolbar _md toolbar" data-md-restore-style="null">
+          <section>
+            <md-subheader class="md-primary">
+              <div class="md-toolbar-tools resize-toolbar">
+                <span>{{ document.title }}</span>
+                <span flex></span>
+                <md-button class="md-icon-button">
+                  <i class="material-icons">save</i>
+                  <md-tooltip>Salvar</md-tooltip>
+                </md-button>
+                <md-button class="md-icon-button">
+                  <i class="material-icons md">share</i>
+                  <md-tooltip>Compartilhar</md-tooltip>
+                </md-button>
+              </div>
+            </md-subheader>
+          </section>
+          <md-divider></md-divider>
+        </md-toolbar>
+        <md-content class="page-container" md-scroll-y="">
+          <md-card class="page" flex="100">
+            <textarea data-autoresize rows="2" class="no-border">{{ ListCtrl.currentDocument.text }}</textarea>
+          </md-card>
+        </md-content>
+      </md-content>
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
