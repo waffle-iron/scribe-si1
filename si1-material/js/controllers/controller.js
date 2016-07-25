@@ -31,6 +31,7 @@ app.controller('ListCtrl', function($scope){
   $scope.docClicked = function (document){
     currentDoc = document;
     $scope.currentDocument = currentDoc;
+    $("#textArea").val($scope.currentDocument.text);
   };
 
   $scope.isDocClicked = function() {
