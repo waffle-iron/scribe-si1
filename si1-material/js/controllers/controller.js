@@ -2,40 +2,30 @@ app.controller('MainCtrl', function($scope){
 
 });
 
-app.controller('FabCtrl', function($scope) {
-    $scope.isOpen = false;
-  }
-);
-
 var currentDoc = null;
 
 app.controller('ListCtrl', function($scope){
 
   $scope.currentDocument;
 
-  $scope.options = [
-    { name: 'Compartilhar' , index: 1, icon: 'share', func: 'shareDoc(folder.documents, document.id)'},
-    { name: 'Excluir' , index: 2, icon: 'delete', func: 'deleteDoc(folder.documents, document.id)'}
-  ];
-
   $scope.mainFolders = [
-    { name: 'Textos', documents: [
-      { name: 'teste1',format: 'txt', text: 'Loren ipsun dowk dodkl20' },
-      { name: 'teste2', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' },
-      { name: 'teste3', format: 'txt', text: 'lorem ips123psun 41 eo ddm' },
-      { name: 'teste4', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' }
+    { name: 'Documentos 1', documents: [
+      { name: 'Doc 1', format: 'txt', text: 'Loren ipsun dowk dodkl20' },
+      { name: 'Doc 2', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' },
+      { name: 'Doc 3', format: 'txt', text: 'lorem ips123psun 41 eo ddm' },
+      { name: 'Doc 4', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' }
     ]},
-    { name: 'Textos 2', documents: [
-      { name: 'teste1',format: 'txt', text: 'Loren ipsun dowk dodkl20' },
-      { name: 'teste2', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' }
+    { name: 'Documentos 2', documents: [
+      { name: 'Doc 1',format: 'txt', text: 'Loren ipsun dowk dodkl20ASDASD' },
+      { name: 'Doc 2', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' }
     ]},
-    { name: 'Textos 3', documents: [] }
+    { name: 'Documentos 3', documents: [] }
   ];
 
   $scope.createDoc = function(folderDocuments) {
     if (folderDocuments != undefined){
-      folderDocuments.push({ name: 'teste', format: 'txt', text: 'Loren ipsun dowk dodkl20'});
-      }
+      folderDocuments.push({ name: 'Documento sem título', format: 'txt', text: ''});
+    };
   };
 
   $scope.docClicked = function (document){
@@ -45,6 +35,10 @@ app.controller('ListCtrl', function($scope){
 
   $scope.isDocClicked = function() {
     return !(currentDoc === null);
+  };
+
+  $scope.saveDocument = function(document) {
+    document.text = $("#textArea").val();
   };
 
   $scope.getDocument = function() {
