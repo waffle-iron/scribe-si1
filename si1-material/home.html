@@ -35,7 +35,7 @@
                 </div>
               </div>
             </md-subheader>
-          <md-list-item class="item-size" ng-click="createDoc(folder.documents)">
+          <md-list-item class="item-size" ng-show="folder != null" ng-click="createDoc(folder.documents)">
             <p> Novo documento</p>
             <md-button class="md-icon-button" ng-click="createDoc(folder.documents)" aria-label="More">
               <i class="material-icons item-icon">add</i>
@@ -68,7 +68,7 @@
           </div>
 
           <span flex></span>
-          <md-button class="md-raised">
+          <md-button class="md-primary md-raised" ng-click="showConfirm($event)" >
             Sair
           </md-button>
         </div>

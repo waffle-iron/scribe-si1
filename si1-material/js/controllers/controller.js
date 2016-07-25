@@ -4,10 +4,11 @@ app.controller('MainCtrl', function($scope){
 
 var currentDoc = null;
 
-app.controller('ListCtrl', function($scope){
+app.controller('ListCtrl', function($scope, $mdDialog){
 
   $scope.currentDocument;
 
+  // Mock data
   $scope.mainFolders = [
     { name: 'Documentos 1', documents: [
       { name: 'Doc 1', format: 'txt', text: 'Loren ipsun dowk dodkl20' },
@@ -22,6 +23,7 @@ app.controller('ListCtrl', function($scope){
     { name: 'Documentos 3', documents: [] }
   ];
 
+  //methods
   $scope.createDoc = function(folderDocuments) {
     if (folderDocuments != undefined){
       folderDocuments.push({ name: 'Documento sem título', format: 'txt', text: ''});
@@ -44,6 +46,24 @@ app.controller('ListCtrl', function($scope){
 
   $scope.getDocument = function() {
     return $scope.currentDocument;
+  };
+
+  $scope.signOut = function() {
+    confirm("eoq");
+  };
+
+  $scope.showConfirm = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Você realmente deseja sair?')
+          .targetEvent(ev)
+          .ok('Sim')
+          .cancel('Não');
+    $mdDialog.show(confirm).then(function() {
+      console.log('saiu');
+    }, function() {
+      console.log('CONTINUA');
+    });
   };
 
 });
