@@ -1,4 +1,5 @@
 var currentDoc = null;
+var currentFolder = null;
 
 app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
 
@@ -37,6 +38,7 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
         .ok('Confirmar')
         .cancel('Cancelar');
     } else {
+        currentFolder = folder;
         confirm.title('Adiconar pasta dentro da pasta "' + folder.name + '".')
         .textContent('Por favor, insira um nome para a sua pasta.')
         .placeholder('Nome da pasta')
@@ -45,9 +47,9 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
         .cancel('Cancelar');
     };
 
-    $mdDialog.show(confirm).then(function(result, folder) {
+    $mdDialog.show(confirm).then(function(result) {
       if (result != undefined) {
-        if (folder == undefined){
+        if (currentFolder == null){
           $scope.mainFolders.push({ name: result, documents: []});
           $mdToast.show(
             $mdToast.simple()
@@ -59,7 +61,7 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
           folder.folders.push({ name: result, documents: []});
           $mdToast.show(
             $mdToast.simple()
-              .textContent('Pasta ' + result + ' adicionada em ' + folder.name + ' com sucesso!')
+              .textContent('Pasta ' + result + ' adicionada em ' + currentFolder.name + ' com sucesso!')
               .position("top right")
               .hideDelay(2000)
           );
