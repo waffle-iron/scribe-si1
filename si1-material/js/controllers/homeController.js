@@ -1,10 +1,6 @@
-app.controller('MainCtrl', function($scope){
-
-});
-
 var currentDoc = null;
 
-app.controller('ListCtrl', function($scope, $mdDialog){
+app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
 
   $scope.currentDocument;
 
@@ -30,6 +26,38 @@ app.controller('ListCtrl', function($scope, $mdDialog){
     };
   };
 
+  $scope.createFolder = function(ev){
+    var confirm = $mdDialog.prompt()
+      .title('Criar pasta.')
+      .textContent('Por favor, insira um nome para a sua pasta.')
+      .placeholder('Nome da pasta')
+      .targetEvent(ev)
+      .ok('Confirmar')
+      .cancel('Cancelar');
+    $mdDialog.show(confirm).then(function(result) {
+      if (result != null ) {
+        $scope.mainFolders.push({ name: result, documents: []});
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Pasta ' + result + ' adicionada com sucesso!')
+            .position("top right")
+            .hideDelay(2000)
+        );
+      } else {
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Pasta não adicionada! Por favor, insira um nome válido para a pasta.')
+            .position("top right")
+            .hideDelay(2000)
+        );
+        $scope.createFolder(ev);
+
+      };
+    }, function() {
+        console.log("eoq");
+    });
+  };
+
   $scope.docClicked = function (document){
     currentDoc = document;
     $scope.currentDocument = currentDoc;
@@ -42,25 +70,26 @@ app.controller('ListCtrl', function($scope, $mdDialog){
 
   $scope.saveDocument = function(document) {
     document.text = $("#textArea").val();
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Documento salvo com sucesso!')
+        .position("top right")
+        .hideDelay(2000)
+    );
   };
 
   $scope.getDocument = function() {
     return $scope.currentDocument;
   };
 
-  $scope.signOut = function() {
-    confirm("eoq");
-  };
-
   $scope.showConfirm = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
           .title('Você realmente deseja sair?')
           .targetEvent(ev)
           .ok('Sim')
           .cancel('Não');
     $mdDialog.show(confirm).then(function() {
-      console.log('saiu');
+      console.log('SAIU');
     }, function() {
       console.log('CONTINUA');
     });
