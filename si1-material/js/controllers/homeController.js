@@ -6,17 +6,17 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
 
   // Mock data
   $scope.mainFolders = [
-    { name: 'Documentos 1', documents: [
+    { name: 'Documentos 1', folders: [], documents: [
       { name: 'Doc 1', format: 'txt', text: 'Loren ipsun dowk dodkl20' },
       { name: 'Doc 2', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' },
       { name: 'Doc 3', format: 'txt', text: 'lorem ips123psun 41 eo ddm' },
       { name: 'Doc 4', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' }
     ]},
-    { name: 'Documentos 2', documents: [
+    { name: 'Documentos 2', folders: [], documents: [
       { name: 'Doc 1',format: 'txt', text: 'Loren ipsun dowk dodkl20ASDASD' },
       { name: 'Doc 2', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' }
     ]},
-    { name: 'Documentos 3', documents: [] }
+    { name: 'Documentos 3', folders: [], documents: [] }
   ];
 
   //methods
@@ -26,23 +26,44 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
     };
   };
 
-  $scope.createFolder = function(ev){
+  $scope.createFolder = function(ev, folder){
+
     var confirm = $mdDialog.prompt()
-      .title('Criar pasta.')
-      .textContent('Por favor, insira um nome para a sua pasta.')
-      .placeholder('Nome da pasta')
-      .targetEvent(ev)
-      .ok('Confirmar')
-      .cancel('Cancelar');
-    $mdDialog.show(confirm).then(function(result) {
-      if (result != null ) {
-        $scope.mainFolders.push({ name: result, documents: []});
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('Pasta ' + result + ' adicionada com sucesso!')
-            .position("top right")
-            .hideDelay(2000)
-        );
+    if (folder == undefined) {
+        confirm.title('Adicionar pasta.')
+        .textContent('Por favor, insira um nome para a sua pasta.')
+        .placeholder('Nome da pasta')
+        .targetEvent(ev)
+        .ok('Confirmar')
+        .cancel('Cancelar');
+    } else {
+        confirm.title('Adiconar pasta dentro da pasta "' + folder.name + '".')
+        .textContent('Por favor, insira um nome para a sua pasta.')
+        .placeholder('Nome da pasta')
+        .targetEvent(ev)
+        .ok('Confirmar')
+        .cancel('Cancelar');
+    };
+
+    $mdDialog.show(confirm).then(function(result, folder) {
+      if (result != undefined) {
+        if (folder == undefined){
+          $scope.mainFolders.push({ name: result, documents: []});
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Pasta ' + result + ' adicionada com sucesso!')
+              .position("top right")
+              .hideDelay(2000)
+          );
+        } else {
+          folder.folders.push({ name: result, documents: []});
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Pasta ' + result + ' adicionada em ' + folder.name + ' com sucesso!')
+              .position("top right")
+              .hideDelay(2000)
+          );
+        };
       } else {
         $mdToast.show(
           $mdToast.simple()
@@ -50,11 +71,14 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
             .position("top right")
             .hideDelay(2000)
         );
-        $scope.createFolder(ev);
-
       };
     }, function() {
-        console.log("eoq");
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent('Nenhuma pasta foi criada.')
+          .position("top right")
+          .hideDelay(2000)
+      );
     });
   };
 
