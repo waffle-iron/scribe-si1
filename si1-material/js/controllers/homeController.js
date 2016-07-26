@@ -1,9 +1,7 @@
-var currentDoc = null;
-var currentFolder = null;
-
 app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
 
-  $scope.currentDocument;
+  $scope.currentDocument = null;
+  $scope.currentFolder = null;
 
   // Mock data
   $scope.mainFolders = [
@@ -38,7 +36,7 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
         .ok('Confirmar')
         .cancel('Cancelar');
     } else {
-        currentFolder = folder;
+        $scope.currentFolder = folder;
         confirm.title('Adiconar pasta dentro da pasta "' + folder.name + '".')
         .textContent('Por favor, insira um nome para a sua pasta.')
         .placeholder('Nome da pasta')
@@ -49,7 +47,7 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
 
     $mdDialog.show(confirm).then(function(result) {
       if (result != undefined) {
-        if (currentFolder == null){
+        if ($scope.currentFolder == null){
           $scope.mainFolders.push({ name: result, documents: []});
           $mdToast.show(
             $mdToast.simple()
@@ -61,7 +59,7 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
           folder.folders.push({ name: result, documents: []});
           $mdToast.show(
             $mdToast.simple()
-              .textContent('Pasta ' + result + ' adicionada em ' + currentFolder.name + ' com sucesso!')
+              .textContent('Pasta ' + result + ' adicionada em ' + $scope.currentFolder.name + ' com sucesso!')
               .position("top right")
               .hideDelay(2000)
           );
@@ -85,13 +83,12 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
   };
 
   $scope.docClicked = function (document){
-    currentDoc = document;
-    $scope.currentDocument = currentDoc;
+    $scope.currentDocument = document;
     $("#textArea").val($scope.currentDocument.text);
   };
 
   $scope.isDocClicked = function() {
-    return !(currentDoc === null);
+    return !($scope.currentDocument === null);
   };
 
   $scope.saveDocument = function(document) {
