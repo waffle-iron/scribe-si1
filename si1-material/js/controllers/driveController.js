@@ -11,7 +11,7 @@ app.controller('DriveController', function($scope) {
 
 	// contains the
 	$scope.pagination = [
-		{ name: "Root", contents: $scope.files }
+		{ name: "Minhas pastas", contents: $scope.files }
 	];
 
 	// the folder currently being rendered

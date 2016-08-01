@@ -1,23 +1,26 @@
-<md-content md-scroll-y="">
-	<section layout="row">
-		<md-subheader class="md-primary" flex-order="1" flex>
-			Nome
-		</md-subheader>
-		<md-subheader class="md-secondary" flex-order="2" flex>
-			Última modificação
-		</md-subheader>
-	</section>
-
-	<md-list ng-cloak>
-		<md-list-item ng-repeat="file in currentFolder.contents">
-			<md-divider></md-divider>
-			<ng-md-icon ng-show="file.type === 'folder'" icon="folder" style="fill: gray"></ng-md-icon>
-			<ng-md-icon ng-show="file.type === 'file'" icon="insert_drive_file" style="fill: gray"></ng-md-icon>
-
-			<!--<span flex="5" ng-class="{ folder: file.type === 'folder' }"></span>-->
-			<a ng-click="openFile($index)">{{ file.name }}</a>
-
-			<span class="md-secondary">{{ file.updateDate | date }}</span>
-		</md-list-item>
-	</md-list>
+<md-content>
+	<table class="table">
+	  <thead>
+	    <tr class="header-table">
+				<th class="text-header">Nome
+					<th class="column-1"></th>
+				</th>
+	      <th class="text-header column-2">Última modificação</th>
+	    </tr>
+	  </thead>
+	  <tbody class="table-hover">
+	    <tr ng-repeat="file in currentFolder.contents" ng-click="openFile($index)">
+				<td>
+					<img ng-show="file.type === 'file'" class="file-icon" src="//ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x16.png">
+					<i ng-show="file.type === 'folder'" class="material-icons item-icon ">folder</i>
+					<td>
+						<span class="text-table">{{ file.name }}</span>
+					</td>
+				</td>
+	      <td>
+					<span class="md-secondary">{{ file.updateDate | date }}</span>
+				</td>
+	    </tr>
+	  </tbody>
+	</table>
 </md-content>
