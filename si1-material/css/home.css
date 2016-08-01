@@ -35,14 +35,6 @@
   padding-left: 25px;
 }
 
-.no-border {
-  border: none;
-  max-width: 628px;
-  min-height: 1123px;
-  box-sizing: border-box;
-  resize: none;
-}
-
 .item-size {
   padding: 3px;
 }
@@ -66,7 +58,7 @@
 
 .text-doc{
   max-height: 50px;
-};
+}
 
 .item-icon-doc{
   padding-right: 5px;

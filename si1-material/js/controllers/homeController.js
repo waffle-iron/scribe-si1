@@ -1,6 +1,5 @@
 app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
 
-  $scope.currentDocument = null;
   $scope.currentFolder = null;
 
   // Mock data
@@ -89,16 +88,6 @@ app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
 
   $scope.isDocClicked = function() {
     return !($scope.currentDocument === null);
-  };
-
-  $scope.saveDocument = function(document) {
-    document.text = $("#textArea").val();
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Documento salvo com sucesso!')
-        .position("top right")
-        .hideDelay(2000)
-    );
   };
 
   $scope.getDocument = function() {
