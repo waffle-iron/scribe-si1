@@ -4,7 +4,6 @@ app.controller('EditorController', function($scope, $mdToast) {
 
 
   $scope.saveDocument = function(document) {
-    document.text = $("#textArea").val();
     $mdToast.show(
       $mdToast.simple()
         .textContent('Documento salvo com sucesso!')

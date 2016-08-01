@@ -33,7 +33,7 @@
         <section>
           <md-subheader class="md-primary">
             <div class="md-toolbar-tools resize-toolbar">
-              <input type="text" class="input-name" placeholder="Documento sem título" value="{{ currentDocument.name }}"></input>
+              <textarea id="file-name" class="input-name" placeholder="Documento sem título">{{ currentDocument.name }}</textarea>
               <span flex></span>
               <md-button class="md-icon-button" ng-click="saveDocument(currentDocument)">
                 <i class="material-icons">save</i>

@@ -14,4 +14,6 @@
   border: none;
   background: #f6f6f6 !important;
   color: rgb(16,108,200);
+  resize: none;
+  height: 30px;
 }
