@@ -1,21 +1,24 @@
 app.controller('ListCtrl', function($scope, $mdDialog, $mdToast){
 
   $scope.currentFolder = null;
+  $scope.currentOption = -1;
 
   // Mock data
-  $scope.mainFolders = [
-    { name: 'Documentos 1', folders: [], documents: [
-      { name: 'Doc 1', format: 'txt', text: 'Loren ipsun dowk dodkl20' },
-      { name: 'Doc 2', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' },
-      { name: 'Doc 3', format: 'txt', text: 'lorem ips123psun 41 eo ddm' },
-      { name: 'Doc 4', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' }
-    ]},
-    { name: 'Documentos 2', folders: [], documents: [
-      { name: 'Doc 1',format: 'txt', text: 'Loren ipsun dowk dodkl20ASDASD' },
-      { name: 'Doc 2', format: 'txt', text: 'lorem ipsum eoqpsun eo ddm' }
-    ]},
-    { name: 'Documentos 3', folders: [], documents: [] }
+  $scope.options = [
+    { name: "Minhas pastas", icon: "folder" },
+    { name: "Compartilhados comigo", icon: "people" },
+    { name: "Lixeira", icon: "delete" }
   ];
+
+  $scope.checkOption = function(){
+    if ($scope.currentOption === 0){
+      return true;
+    };
+  };
+
+  $scope.setCurrentOption = function(index){
+    $scope.currentOption = index;
+  };
 
   //methods
   $scope.createDoc = function(folderDocuments) {

@@ -7,19 +7,26 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/table.css">
-    
+
   </head>
 
-<body class="docs-body layout-row" layout="row" ng-cloak>
+<body class="docs-body layout-row" layout="row" ng-cloak ng-controller="ListCtrl" >
 
-	<!-- sidenavbar custom directive -->
-    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" hide-print md-is-locked-open="$mdMedia('gt-sm')">
-	    <header class="nav-header">
-	      <h2><span>Scribe</span></h2>
-	    </header>
+  	<!-- sidenavbar custom directive -->
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" hide-print
+                md-is-locked-open="$mdMedia('gt-sm')">
+
+      <md-content flex role="navigation" >
+        <md-list ng-cloak>
+          <md-list-item class="item-size" ng-repeat="option in options" ng-click="setCurrentOption($index)">
+            <i class="material-icons item-icon">{{option.icon}}</i>
+            <p>{{option.name}}</p>
+            </md-list-item>
+          </md-list>
+      </md-content>
     </md-sidenav>
 
-    <div layout="column" tabIndex="-1" role="main" flex ng-controller="DriveController as driveCtrl">
+    <div layout="column" tabIndex="-1" ng-if="checkOption()" role="main" flex ng-controller="DriveController as driveCtrl">
 
 		<!-- folder's pagination -->
 		<folder-pagination></folder-pagination>
