@@ -1,0 +1,26 @@
+<md-content>
+	<table class="table">
+	  <thead>
+	    <tr class="header-table">
+				<th class="text-header">Nome
+					<th class="column-1"></th>
+				</th>
+	      <th class="text-header column-2">Última modificação</th>
+	    </tr>
+	  </thead>
+	  <tbody class="table-hover">
+	    <tr ng-repeat="file in currentFolder.contents" ng-click="openFile($index)">
+				<td>
+					<img ng-show="file.type === 'file'" class="file-icon" src="//ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x16.png">
+					<i ng-show="file.type === 'folder'" class="material-icons item-icon ">folder</i>
+					<td>
+						<span class="text-table">{{ file.name }}</span>
+					</td>
+				</td>
+	      <td class="fileupdate-align">
+					<span>{{ file.updateDate | date }}</span>
+				</td>
+	    </tr>
+	  </tbody>
+	</table>
+</md-content>

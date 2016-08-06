@@ -1,0 +1,52 @@
+@font-face 
+{
+  font-family: 'Roboto';
+  src: url('roboto.eot'); /* IE9 Compat Modes */
+  src: url('roboto.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('roboto.woff') format('woff'), /* Modern Browsers */
+  url('roboto.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('roboto.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+.md-toolbar-tools
+{
+	background-color: #0a3b5c;
+	color: white;
+	box-shadow: 0px 2px 5px grey;
+}
+
+.md-toolbar-tools .md-button:not([disabled]):hover {
+  background-color: #0e5381;
+}
+
+.logo-mid
+{
+	align: center;
+	position: absolute;
+  top: 10%;
+  left: 43%;
+}
+
+.login-form
+{
+	font-family: 'Roboto';
+	font-size: 120%;
+	font-weight: 200;
+
+	text-overflow: ellipsis;
+	margin: 0px 0px 0px 0px;
+	position: absolute;
+	color: #4d4d4d;
+  top: 50%;
+  left: 40%;
+  width: 20%;
+
+  margin-bottom: 0;
+
+  min-height: 0px !important;
+}
+
+.login-form .md-button
+{
+  color: #0a3b5c;
+}

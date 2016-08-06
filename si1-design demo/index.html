@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>Scribe</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/login.css">
+  </head>
+
+  <body ng-controller="MainCtrl">
+
+  <!-- Top Bar -->
+  <md-toolbar>
+		<div class="md-toolbar-tools">
+
+			<!-- Logo header -->
+		 	<img src="gui/logo-header.png" align="right"></img>
+		    <span flex></span>
+		     
+		    <!-- Top bar buttons -->
+		    <md-button>Início</md-button>
+		    <md-button>Sobre</md-button>
+		    <md-button>Contato</md-button>
+
+	    </div>
+    </md-toolbar>
+
+    <div class="logo-mid">
+        <img ng-src="gui/logo.png" class="md-card-image"><br>
+    </div>
+
+    <!-- Login Form -->
+    <div class="login-form">
+
+    	<!-- E-mail and password inputs -->
+	    <div ng-controller="LoginFormCtrl" layout="column" ng-cloak class="md-inline-form">
+
+		    	<md-input-container>
+			        <label>E-mail</label>
+			        <input ng-model="user.email" type="email">
+		    	</md-input-container>
+		    	<md-input-container>
+			        <label>Senha</label>
+			        <input ng-model="user.password" type="password">
+		    	</md-input-container>
+
+	    		<!-- Login and Register Buttons -->
+			    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				    <md-button flex="100" class="md-raised md-primary"><b>ENTRAR</b></md-button>
+				</section>
+				<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				    <md-button md-no-ink class="md-primary"><b>CRIAR USUÁRIO</b></md-button>
+			    </section>
+	   
+	    </div>
+
+	</div>
+
+    <!-- JS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+    <!-- Modules -->
+    <script src="js/modules/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/loginController.js"></script>
+
+    <!-- Directives -->
+    <script src='js/directives/pwdValidation.js'></script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+
+  </body>
+</html>
