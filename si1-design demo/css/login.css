@@ -8,45 +8,51 @@
   url('roboto.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
-.md-toolbar-tools
+.top-bar
 {
 	background-color: #0a3b5c;
 	color: white;
-	box-shadow: 0px 2px 5px grey;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
 
-.md-toolbar-tools .md-button:not([disabled]):hover {
+.top-bar .md-button:not([disabled]):hover 
+{
   background-color: #0e5381;
 }
 
-.logo-mid
-{
-	align: center;
-	position: absolute;
-  top: 10%;
-  left: 43%;
-}
-
-.login-form
+.page-content
 {
 	font-family: 'Roboto';
 	font-size: 120%;
 	font-weight: 200;
 
 	text-overflow: ellipsis;
-	margin: 0px 0px 0px 0px;
-	position: absolute;
 	color: #4d4d4d;
-  top: 50%;
-  left: 40%;
-  width: 20%;
-
-  margin-bottom: 0;
-
-  min-height: 0px !important;
 }
 
-.login-form .md-button
+.page-content .button-border
+{
+  background-color: #0a3b5c;
+  color: white;
+  font-weight: bold;
+  left: 30%;
+}
+
+.page-content .button-border:not([disabled]):hover 
+{
+  background-color: #0e5381;
+  font-weight: bold;
+}
+
+.page-content .button-noborder
 {
   color: #0a3b5c;
+  font-weight: normal;
+  left: 24%;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused .md-input 
+{
+    border-color: #0a3b5c;
+    color: #0a3b5c;
 }

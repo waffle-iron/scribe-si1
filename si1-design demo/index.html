@@ -11,15 +11,13 @@
 
   <body ng-controller="MainCtrl">
 
-  <!-- Top Bar -->
-  <md-toolbar>
-		<div class="md-toolbar-tools">
+	<!-- Top Bar -->
+	<md-toolbar>
+		<div class="top-bar" layout="row" align="left">
 
-			<!-- Logo header -->
-		 	<img src="gui/logo-header.png" align="right"></img>
-		    <span flex></span>
-		     
-		    <!-- Top bar buttons -->
+			<img src="gui/logo-header.png"></img>
+			<span flex></span>
+
 		    <md-button>Início</md-button>
 		    <md-button>Sobre</md-button>
 		    <md-button>Contato</md-button>
@@ -27,31 +25,29 @@
 	    </div>
     </md-toolbar>
 
-    <div class="logo-mid">
-        <img ng-src="gui/logo.png" class="md-card-image"><br>
-    </div>
+    <!-- Page Content -->
+    <div class="page-content" flex layout="column" layout-align="center center">
+       
+        <img ng-src="gui/logo.png"><br><br>
 
-    <!-- Login Form -->
-    <div class="login-form">
-
-    	<!-- E-mail and password inputs -->
-	    <div ng-controller="LoginFormCtrl" layout="column" ng-cloak class="md-inline-form">
+	    <div ng-controller="LoginFormCtrl">
 
 		    	<md-input-container>
 			        <label>E-mail</label>
 			        <input ng-model="user.email" type="email">
-		    	</md-input-container>
+		    	</md-input-container><br>
+		    	
 		    	<md-input-container>
 			        <label>Senha</label>
 			        <input ng-model="user.password" type="password">
 		    	</md-input-container>
 
 	    		<!-- Login and Register Buttons -->
-			    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-				    <md-button flex="100" class="md-raised md-primary"><b>ENTRAR</b></md-button>
+			    <section>
+				    <md-button class="button-border">ENTRAR</md-button>
 				</section>
-				<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-				    <md-button md-no-ink class="md-primary"><b>CRIAR USUÁRIO</b></md-button>
+				<section>
+				    <md-button class="button-noborder">CRIAR USUÁRIO</md-button>
 			    </section>
 	   
 	    </div>
