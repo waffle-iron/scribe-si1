@@ -1,4 +1,4 @@
-app.controller('DriveController', function($scope, $mdDialog, $mdToast, $rootScape, $window) {
+app.controller('DriveController', function($scope, $mdDialog, $mdToast, $rootScope, $window) {
 
 	// contains all files on the drive
 	$scope.files = [
