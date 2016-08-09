@@ -26,7 +26,6 @@ app.controller('DriveController', function($scope, $mdDialog, $mdToast, $rootSco
 		// if it's a text file, then open it in a new tab
 		} else {
 			$rootScope.$emit("CallSetDocumentMethod", $scope.currentDocument);
-			$scope.setDocument($scope.currentFolder.contents[index]);
 			$window.location.href = '/panel/file/edit';
 		}
 	};
