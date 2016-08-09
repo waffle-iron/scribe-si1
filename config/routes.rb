@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'panel/home'
 
+  get 'panel/file/edit', to: 'file#edit'
+
   get 'partials/:path.html' => 'templates#page', :constraints => { :path => /.+/  }
 
   # The priority is based upon order of creation: first created -> highest priority.

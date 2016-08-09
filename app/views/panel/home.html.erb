@@ -1,2 +1,9 @@
-<h1>Panel#home</h1>
-<p>Find me in app/views/panel/home.html.erb</p>
+<div layout="column" tabIndex="-1" role="main" flex ng-controller="DriveController as driveCtrl">
+
+  <!-- folder's pagination -->
+  <folder-pagination></folder-pagination>
+
+  <!-- renders the current folder files -->
+  <drive-files></drive-files>
+
+</div>
