@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Scribe - Online Text Editor</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <%= stylesheet_link_tag "application", media: "all" %>
+
+  </head>
+  <body ng-controller="MainCtrl">
+
+    <md-toolbar>
+
+    </md-toolbar>
+
+    <md-content class="form-box">
+
+      <div layout="row" layout-align="center" layout-xs="column">
+        <div flex="100">
+            <md-tabs md-stretch-tabs="always" md-dynamic-height md-border-bottom >
+              <md-tab label="Entrar" id="login-form">
+                <md-content class="md-padding">
+                  <h1 class="md-display-1">Entrar</h1>
+                  <form name="loginForm">
+                      <md-input-container class="md-block">
+                        <label>E-mail</label>
+                        <input required type="email" id="login-email" name="loginEmail" ng-model="login.loginEmail"
+                               minlength="5" maxlength="50" ng-pattern="/^.+@.+\..+$/"/>
+                        <div ng-messages="loginForm.loginEmail.$error" role="alert">
+                          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                            E-mail necessário. Precisa ter tamanho entre 5 e 50.
+                          </div>
+                        </div>
+                      </md-input-container>
+
+                      <md-input-container class="md-block">
+                        <label>Senha</label>
+                        <input required type="password" id="login-password" name="loginPassword" ng-model="login.loginPassword">
+                        <div ng-messages="loginForm.loginPassword.$error">
+                          <div ng-message="required">Senha necessária.</div>
+                        </div>
+                      </md-input-container>
+                    </form>
+
+                    <md-checkbox class="md-primary" id="login-check">Lembrar </md-checkbox>
+                    <md-button id="login-btn" ng-disabled="loginForm.$invalid" class="custom-btn md-primary" href="/panel/home">Entrar</md-button>
+                    <md-button id="login-forgot" class="custom-btn md-warn">Esqueceu a senha?</md-button>
+
+
+                </md-content>
+              </md-tab>
+              <md-tab label="Registrar" id="register-form">
+                <md-content class="md-padding">
+                  <h1 class="md-display-1">Registrar</h1>
+                  <form name="registerForm">
+
+                    <md-input-container class="md-block">
+                      <label>Nome</label>
+                      <input required type="text" id="register-name" name="registerName" ng-model="register.registerName">
+                      <div ng-messages="registerForm.registerName.$error">
+                        <div ng-message="required">Insira um nome válido.</div>
+                      </div>
+                    </md-input-container>
+
+                      <md-input-container class="md-block">
+                        <label>E-mail</label>
+                        <input required type="email" id="register-email" name="registerEmail" ng-model="register.registerEmail"
+                               minlength="5" maxlength="50" ng-pattern="/^.+@.+\..+$/" />
+                        <div ng-messages="registerForm.registerEmail.$error" role="alert">
+                          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                            Insira um E-mail válido. Precisa ter tamanho entre 5 e 50 e parecer com um e-mail.
+                          </div>
+                        </div>
+                      </md-input-container>
+
+                      <md-input-container class="md-block">
+                        <label>Senha</label>
+                        <input required type="password" id="register-password" name="registerPassword" ng-model="register.registerPassword">
+                        <div ng-messages="registerForm.registerPassword.$error">
+                          <div ng-message="required">Insira uma senha válida.</div>
+                        </div>
+                      </md-input-container>
+
+                      <md-input-container class="md-block">
+                        <label>Confirmar Senha</label>
+                        <input required type="password" id="register-prasswordC" name="registerPasswordConfirm" ng-model="register.registerPasswordConfirm"
+                        compare-to="register.registerPassword">
+                        <div ng-messages="registerForm.registerPasswordConfirm.$error">
+                          <div ng-message="required">Insira uma senha válida.</div>
+                          <div ng-message="compareTo">As senhas não correspondem.</div>
+                        </div>
+                      </md-input-container>
+
+                    </form>
+
+                    <md-button id="register-btn" ng-disabled="registerForm.$invalid" class="custom-btn md-primary">Registrar </md-button>
+
+                </md-content>
+              </md-tab>
+            </md-tabs>
+        </div>
+      </md-content>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+    <%= javascript_include_tag "application" %>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  </body>
+</html>

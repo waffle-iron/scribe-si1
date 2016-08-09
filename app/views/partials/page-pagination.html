@@ -1,0 +1,28 @@
+<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+	<div class="md-toolbar-tools docs-toolbar-tools" tabIndex="-1">
+
+		<!-- sidemenu -->
+		<md-button class="md-icon-button" ng-click="openMenu()" hide-gt-sm aria-label="Toggle Menu">
+			<i class="material-icons">dehaze</i>
+		</md-button>
+
+		<!-- pagination -->
+		<div layout="row" flex class="fill-height">
+			<span class="folderLink" ng-repeat="folder in pagination">
+				<a href="#" ng-click="changeFolder($index)">{{ folder.name }}</a>
+			</span>
+		</div>
+
+		<div id="driveOptions">
+			<md-button class="md-icon-button" ng-click="createFolder($event)">
+				<i class="material-icons">create_new_folder</i>
+				<md-tooltip>Criar pasta</md-tooltip>
+			</md-button>
+			<md-button class="md-icon-button" ng-click="createDocument($event)">
+				<i class="material-icons">note_add</i>
+				<md-tooltip>Criar arquivo</md-tooltip>
+			</md-button>
+		</div>
+
+	</div>
+</md-toolbar>
