@@ -1,9 +1,10 @@
 app.controller('EditorController', function($scope, $mdToast) {
 
-	$scope.currentDocument = { name: "Texto teste", ext: "txt", text: "Lorem ipsum dolor sit amet" };
+	$scope.currentDocument;
 
 
-  $scope.saveDocument = function(document) {
+  $scope.saveDocument = function(newText) {
+		$scope.currentDocument.contents = newText;
     $mdToast.show(
       $mdToast.simple()
         .textContent('Documento salvo com sucesso!')
@@ -11,5 +12,13 @@ app.controller('EditorController', function($scope, $mdToast) {
         .hideDelay(2000)
     );
   };
+
+	$rootScope.$on("CallSetDocumentMethod", function(document){
+		 $scope.setDocument(document);
+	});
+
+	$scope.setDocument = function(document){
+		$scope.currentDocument = document;
+	};
 
 });

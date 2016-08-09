@@ -1,4 +1,4 @@
-app.controller('DriveController', function($scope, $mdDialog, $mdToast) {
+app.controller('DriveController', function($scope, $mdDialog, $mdToast, $rootScape, $window) {
 
 	// contains all files on the drive
 	$scope.files = [
@@ -25,7 +25,9 @@ app.controller('DriveController', function($scope, $mdDialog, $mdToast) {
 
 		// if it's a text file, then open it in a new tab
 		} else {
-			// do something
+			$rootScope.$emit("CallSetDocumentMethod", $scope.currentDocument);
+			$scope.setDocument($scope.currentFolder.contents[index]);
+			$window.location.href = '/panel/file/edit';
 		}
 	};
 
@@ -62,8 +64,6 @@ app.controller('DriveController', function($scope, $mdDialog, $mdToast) {
 			};
 		});
 	};
-
-
 
 	$scope.createFolder = function(ev){
 
