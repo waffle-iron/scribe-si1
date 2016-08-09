@@ -1,25 +1,24 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  timeout: 5000
 
+# cobalt
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: d584rbf3tjucme
+  username: dgcaxckbzefbfj
+  password: bAW2jv3U1plNeM-8Z4QNCkpXmE
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+# charcoal
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: ddt1k3mt5npnhv
+  username: qwwkcxigqbrhnh
+  password: fapVQa5FIgiLVHUh8asI0lgiU7
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: deesdt01j1n9j1
+  username: psymztnmxichpb
+  password: GmepJtoN4vcxVhaJ6_99aIlCzz
