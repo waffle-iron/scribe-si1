@@ -1,4 +1,4 @@
-app.controller('EditorController', function($scope, $mdToast) {
+app.controller('EditorController', function($scope, $mdToast, $rootScope) {
 
 	$scope.currentDocument;
 
