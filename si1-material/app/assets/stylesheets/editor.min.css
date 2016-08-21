@@ -12,6 +12,11 @@ blockquote
   border-left: 2px solid gray;
 }
 
+body
+{
+    background-color: #eeeeee;
+}
+
 .mdl-grid
 {
     padding-top: 50px;
@@ -20,8 +25,17 @@ blockquote
 
 .mdl-text__area
 {
-    padding-left: 10%;
     padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    min-width: 800px;
+    max-width: 800px;
+    min-height: 750px;
+
+    box-sizing: border-box;
+    resize: none;
 }
 .mdl-text__area:focus
 {
@@ -32,8 +46,10 @@ blockquote
 	font-weight: bold;
     color: white;
     border-color: white;
+    width: 50%
 }
-.mdl-textfield__input:focus {
+.mdl-textfield__input:focus 
+{
 	border-color: white;
 	color: white
 }
