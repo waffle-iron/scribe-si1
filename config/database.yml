@@ -7,22 +7,14 @@ default: &default
 # charcoal
 development:
   <<: *default
-  host: ec2-54-243-62-211.compute-1.amazonaws.com
-  database: ddt1k3mt5npnhv
-  username: qwwkcxigqbrhnh
-  password: fapVQa5FIgiLVHUh8asI0lgiU7
-
-# cobalt
-test:
-  <<: *default
-  host: ec2-54-243-126-40.compute-1.amazonaws.com
-  database: d584rbf3tjucme
-  username: dgcaxckbzefbfj
-  password: bAW2jv3U1plNeM-8Z4QNCkpXmE
+  host: localhost
+  database: <%= ENV['SCRIBE_LOCAL_DATABASE'] %>
+  username: <%= ENV['SCRIBE_LOCAL_USERNAME'] %>
+  password: <%= ENV['SCRIBE_LOCAL_PASSWORD'] %>
 
 production:
   <<: *default
-  host: ec2-54-243-126-40.compute-1.amazonaws.com
-  database: deesdt01j1n9j1
-  username: psymztnmxichpb
-  password: GmepJtoN4vcxVhaJ6_99aIlCzz
+  host:     <% ENV['SCRIBE_PRODUCTION_HOST'] %>
+  database: <% ENV['SCRIBE_PRODUCTION_DATABASE'] %>
+  username: <% ENV['SCRIBE_PRODUCTION_USERNAME'] %>
+  password: <% ENV['SCRIBE_PRODUCTION_PASSWORD'] %>
