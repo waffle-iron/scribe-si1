@@ -1,3 +1,24 @@
 // Place all the styles related to the Auth controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.mdl-layout {
+	align-items: center;
+  align-content: center;
+}
+
+.mdl-layout__content {
+	padding: 24px;
+	flex: none;
+  position: absolute;
+  top: 50%;
+  margin-top: -190px;
+}
+
+.form-button {
+  float: right;
+  margin: 10px;
+}
+
+.layout-transparent {
+  background: url(https://dl.dropboxusercontent.com/u/32494584/hero-bg.jpg);
+}
