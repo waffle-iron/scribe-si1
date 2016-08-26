@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'auth#login'
 
   get 'register' => 'users#new'
@@ -15,5 +14,10 @@ Rails.application.routes.draw do
   get 'document/new' => 'documents#create'
   get 'folder/new' => 'folders#create'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  scope '/api' do
+    scope '/documents' do
+      get '/all' => 'documents#index'
+    end
+  end
 end

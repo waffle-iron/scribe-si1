@@ -1,9 +1,18 @@
-var app = angular.module('myApp', []);
+(function () {
+  angular.module('ScribeApp').controller('authCtrl', function($scope, httpRequest) {
 
-app.controller('authCtrl', function($scope){
+    /*$scope.requestUser = function () {
+      httpRequest.retrieve('GET', 'api/get/docs').then(function success(res) {
+        console.log(res);
+      }, function error(res) {
+        console.log(res);
+        console.log('error');
+      });
+    };
 
-  $scope.login = function(){
-    console.log("Enviando request... Usuário:" + $scope._username + " Senha: " + $scope._password);
-  };
+    $scope.login = function(){
+      $scope.requestUser();
+    };*/
 
-});
+  });
+})();
