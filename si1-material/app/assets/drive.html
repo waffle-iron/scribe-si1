@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ScribeApp">
     <head>
         <title>Drive - Scribe</title>
         <meta charset="UTF-8" />
@@ -15,174 +15,44 @@
     <body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
             <div class="mdl-layout__drawer">
-
-                <span class="mdl-layout-title">
-                    <img src="imgs/logo-inverted.png" />
-                    <a href="/">Scribe</a>
-                </span>
-
-                <nav class="mdl-navigation">
-                    <div id="profile">
-                        <div class="profile-left">
-                            <a href="#"><img src="imgs/chico.jpg" class="img-circle" /></a>
-                        </div>
-
-                        <div class="profile-body">
-                            <span class="profile-heading">
-                                Francisco Júnior
-                                <a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
-                            </span>
-                            <br />
-                            <span class="profile-usertype">Normal User</span>
-                        </div>
-
-                        <div class="profile-tabs">
-                            <span class="profile-tabs-option active"><i class="material-icons">reorder</i></span>
-                            <span class="profile-tabs-option"><i class="material-icons">email</i></span>
-                            <span class="profile-tabs-option"><i class="material-icons">account_circle</i></span>
-                            <span class="profile-tabs-option"><i class="material-icons">settings</i></span>
-                            <span class="profile-tabs-option"><i class="material-icons">exit_to_app</i></span>
-                        </div>
-                    </div>
-
-                    <div id="menu">
-                        <div class="submenu">
-                            <h6>Main Menu</h6>
-                            <ul>
-                                <li class="active"><a href="#">
-                                    <i class="material-icons">folder</i>
-                                    Meu Drive
-                                </a></li>
-                                <li><a href="#">
-                                    <i class="material-icons">folder_shared</i>
-                                    Compartilhados
-                                </a></li>
-                                <li><a href="#">
-                                    <i class="material-icons">delete</i>
-                                    Excluídos
-                                </a></li>
-                                <li><a href="#">
-                                    <i class="material-icons">star</i>
-                                    Favoritos
-                                </a></li>
-                            </ul>
-                        </div>
-
-                        <div class="submenu">
-                            <h6>Arquivos Recentes</h6>
-                            <ul>
-                                <li><a href="#">
-                                    <i class="material-icons">insert_drive_file</i>
-                                    Reposição de Lógica
-                                </a></li>
-                                <li><a href="#">
-                                    <i class="material-icons">insert_drive_file</i>
-                                    Prova de Cálculo
-                                </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+                <navbar></navbar>
             </div>
 
             <main class="mdl-layout__content">
-                <div class="page-content">
-                    <div id="header" class="mdl-layout__header-row">
-                        <a href="#" id="menutoggle" class="menutoggle">
-                            <i class="material-icons">menu</i>
-                        </a>
+				<div class="page-content">
+					<div id="header" class="mdl-layout__header-row" ng-hide="true">
+						<a href="#" id="menutoggle" class="menutoggle">
+							<i class="material-icons">menu</i>
+						</a>
+					</div>
 
-                        <form action="#" class="form-group">
-                            <input type="text" placeholder="Search..." id="searchbar" class="inputbar inputbar-dark" />
-                            <label for="searchbar" class="search-icon"><i class="material-icons">search</i></label>
-                        </form>
+					<drive></drive>
+				</div>
 
-                        <div id="pagination">
-                            <span class="pagination-item pagination-root">
-                                Meu Drive
-                            </span>
-                            <i class="material-icons">keyboard_arrow_right</i>
-                            <span class="pagination-item">
-                                Teste
-                                <i class="material-icons">keyboard_arrow_down</i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div id="drive">
-                        <span class="mdl-grid drive-item drive-item-header">
-                            <span class="mdl-cell mdl-cell--6-col">
-                                <i class="material-icons">sort_by_alpha</i>
-                                Nome
-                            </span>
-                            <span class="mdl-cell mdl-cell--2-col">
-                                <i class="material-icons">person</i>
-                                Proprietário
-                            </span>
-                            <span class="mdl-cell mdl-cell--2-col">
-                                <i class="material-icons">access_time</i>
-                                Última Modificação
-                            </span>
-                            <span class="mdl-cell mdl-cell--2-col">
-                                <i class="material-icons">insert_drive_file</i>
-                                Tamanho do Arquivo
-                            </span>
-                        </span>
-
-                        <span class="mdl-grid drive-item">
-                            <span class="mdl-cell mdl-cell--6-col">
-                                <i class="material-icons">insert_drive_file</i>
-                                Reposição de Lógica
-                            </span>
-                            <span class="mdl-cell mdl-cell--2-col">eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">1 de julho de 2016, eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">20kb</span>
-                        </span>
-
-                        <span class="mdl-grid drive-item">
-                            <span class="mdl-cell mdl-cell--6-col">
-                                <i class="material-icons">insert_drive_file</i>
-                                Prova de Cálculo
-                            </span>
-                            <span class="mdl-cell mdl-cell--2-col">eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">1 de julho de 2016, eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">20kb</span>
-                        </span>
-
-                        <span class="mdl-grid drive-item">
-                            <span class="mdl-cell mdl-cell--6-col">
-                                <i class="material-icons">insert_drive_file</i>
-                                Prova de Cálculo #2
-                            </span>
-                            <span class="mdl-cell mdl-cell--2-col">eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">1 de julho de 2016, eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">20kb</span>
-                        </span>
-
-                        <span class="mdl-grid drive-item">
-                            <span class="mdl-cell mdl-cell--6-col">
-                                <i class="material-icons">insert_drive_file</i>
-                                Texto de SI
-                            </span>
-                            <span class="mdl-cell mdl-cell--2-col">eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">1 de julho de 2016, eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">20kb</span>
-                        </span>
-
-                        <span class="mdl-grid drive-item">
-                            <span class="mdl-cell mdl-cell--6-col">
-                                <i class="material-icons">folder</i>
-                                Provas
-                            </span>
-                            <span class="mdl-cell mdl-cell--2-col">eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">1 de julho de 2016, eu</span>
-                            <span class="mdl-cell mdl-cell--2-col">-</span>
-                        </span>
-                    </div>
-                </div>
             </main>
         </div>
 
         <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+        <script src="javascripts/vendor/angular.min.js"></script>
+
+        <!-- Module -->
+        <script src="javascripts/app.js"></script>
+
+		<!-- Services -->
+		<script src="javascripts/services/tabService.js"></script>
+		<script src="javascripts/services/userService.js"></script>
+		<script src="javascripts/services/fileService.js"></script>
+
+        <!-- Controllers -->
+		<script src="views/navbar/navbarController.js"></script>
+		<script src="views/mainmenu/mainMenuController.js"></script>
+		<script src="views/profilepreview/profilePreviewController.js"></script>
+		<script src="views/drive/driveController.js"></script>
+
+        <!-- Directives -->
+		<script src="views/navbar/navbarDirective.js"></script>
+		<script src="views/mainmenu/mainMenuDirective.js"></script>
+		<script src="views/profilepreview/profilePreviewDirective.js"></script>
+		<script src="views/drive/driveDirective.js"></script>
     </body>
 </html>

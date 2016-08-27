@@ -1,27 +1,207 @@
 // compileCompressed: theme.min.css
 
-.form-group
-    position: relative
+$body-bg: #d8dce3
 
-    .inputbar
-        border: 0
-        border-radius: 3px
-        font-size: 12px
-        height: 16px
-        padding: 10px 12px
+$logo-bg: #20242d
+$profile-bg: #3b4354
+$tab-bg: #505b72
 
-        &.inputbar-dark
-            color: #bdc3d1
-            background-color: #3b4354
+$secondary-font: 'Montserrat', sans-serif
+$highlight-font: 'Arimo', sans-serif
 
-        &:focus
-            outline: 0
+@font-face
+	font-family: 'Helvetica Neue'
+	font-style: normal
+	font-weight: normal
+	src: local('Helvetica 45 Light'), url('../fonts/HelveticaNeue-Light.woff') format('woff')
 
-    .search-icon
-        position: absolute
-        right: 8px
-        top: 9px
-        color: lightgray
+@font-face
+	font-family: 'Helvetica Neue Bold'
+	font-style: normal
+	font-weight: normal
+	src: local('Helvetica Neue Bold'), url('../fonts/HelveticaNeue-Medium.woff') format('woff')
 
-        i
-            font-size: 18px
+=transition($duration)
+    -webkit-transition: $duration
+    -moz-transition: $duration
+    -ms-transition: $duration
+    transition: $duration
+
+body
+	font-family: 'Helvetica Neue'
+	background-color: $body-bg
+	letter-spacing: .2px
+
+navbar
+
+    // logo container on the lateral menu
+    .menu-logo
+        background-color: $logo-bg
+        height: 64px
+        padding: 8px
+
+        a
+            display: block
+            text-align: center
+
+            // logo
+            img
+                width: 40px
+                opacity: 0.8
+                transition: 0.1s
+                +transition(0.1s)
+
+            // title
+            .menu-title
+                font-family: $secondary-font
+                font-size: 25px
+                color: rgba(255,255,255,0.6)
+                vertical-align: -15%
+                margin: 0 10px 0 8px
+                +transition(0.1s)
+
+        a:hover
+            img
+                opacity: 1
+
+            .menu-title
+                color: rgba(255,255,255,0.8)
+
+    // navigation content (profile and menu)
+    nav
+        padding: 0!important
+
+        #profile
+            background-color: $profile-bg
+            padding-top: 15px
+            text-align: center
+
+            // user's avatar container
+            .profile-left
+                display: inline-block
+
+                img
+                    border: 2px solid #657390
+                    border-radius: 50%
+                    padding: 3px
+                    width: 48px
+
+            // user's name and account type container
+            .profile-right
+                display: inline-block
+                margin-left: 10px
+                text-align: left
+                line-height: 1.4em
+                width: 60%
+                color: rgba(255,255,255,0.5)
+                vertical-align: -55%
+
+                .profile-username
+                    font-size: 14px
+                    color: rgba(255,255,255,0.9)
+
+                    // right arrow that expands for more user's info
+                    a
+                        float: right!important
+
+                        i
+                            font-size: 19px
+                            vertical-align: -20%
+                            color: rgba(255,255,255,0.5)
+                            +transition(0.1s)
+
+                        i:hover
+                            color: rgba(255,255,255,0.8)
+
+                .profile-accounttype
+                    font-size: 12px
+
+            // tabs container
+            .profile-tabs
+                margin-top: 15px
+
+                // single tab
+                .profile-tabs-option
+                    background-color: $tab-bg
+                    color: white
+                    display: inline-block
+                    width: calc(100% / 5 - 0.5px)
+                    margin-left: -4px
+                    padding: 8px 0 3px
+                    border-left: 1px solid rgba(255,255,255,0.2)
+                    cursor: pointer
+
+                    i
+                        font-size: 16px
+
+                    &.active
+                        background-color: white!important
+                        color: #262b36
+
+                    &:hover
+                        background-color: #464f63
+
+        // container for tabs' content
+        #menu
+            .submenu
+                font-family: $highlight-font
+
+                h6
+                    font-size: 11px
+                    color: #9fa8bc
+                    text-transform: uppercase
+                    margin: 20px 0 5px 15px
+
+                ul
+                    padding: 0
+                    margin: 0
+
+                    li
+                        font-family: 'Helvetica Neue Bold'
+                        font-size: 12px
+                        text-transform: uppercase
+                        list-style: none
+                        color: $tab-bg
+                        border-bottom: 1px solid #eaecf0
+                        cursor: pointer
+
+                        i
+                            font-size: 20px
+                            vertical-align: -25%
+                            margin-right: 8px
+                            color: #259dab
+
+                        a
+                            display: block
+                            color: inherit
+                            padding: 10px 20px
+
+                            &.active
+                                color: white!important
+                                background-color: #259dab
+                                background-image: -webkit-linear-gradient(left, #259dab 0%, #2574ab 100%);
+                                background-image: -o-linear-gradient(left, #259dab 0%, #2574ab 100%);
+                                background-image: linear-gradient(to right, #259dab 0%, #2574ab 100%);
+                                background-repeat: repeat-x
+
+                                i
+                                    color: white
+
+                        &:first-child
+                            border-top: 1px solid #eaecf0
+
+a
+    text-decoration: none
+
+.mdl-layout__drawer
+    border: 0
+
+.panel
+	height: 100%
+	width: calc(100% - 40px)
+	background-color: white
+	margin: 20px
+	border-radius: 2px
+
+.no-priority
+	font-family: 'Helvetica Neue'

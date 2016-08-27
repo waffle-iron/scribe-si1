@@ -1,0 +1,41 @@
+<!-- menu principal -->
+<div class="submenu">
+
+	<!-- título do menu principal -->
+    <h6>{{ header }}</h6>
+
+	<!-- lista de opções do menu principal -->
+    <ul>
+        <li ng-repeat="link in links">
+
+			<!-- wrapper para adicionar client-side routes se necessário, e
+			adicionar .active, pois o escopo do ng-repeat não abrange o li -->
+            <a
+			ng-class="{active : checkMainTab($index)}"
+			ng-click="setMainTab($index)">
+
+				<!-- atributos do link -->
+                <i class="material-icons" >{{ link.icon }}</i>
+                {{ link.name }}
+
+            </a>
+
+        </li>
+    </ul>
+
+	<!-- título do menu de arquivos recentes -->
+	<h6>{{ recentHeader }}</h6>
+
+	<!-- lista de arquivos recentes -->
+	<ul>
+		<!-- o uso do 'track by $index' evita problemas se houver arquivos
+		com nomes iguais -->
+		<li ng-repeat="file in recentFiles track by $index">
+			<a>
+				<i class="material-icons">insert_drive_file</i>
+				<span class="no-priority">{{ file.name }}</span>
+			</a>
+		</li>
+	</ul>
+
+</div>
