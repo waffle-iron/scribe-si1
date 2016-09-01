@@ -1,18 +1,12 @@
 (function () {
   angular.module('ScribeApp').controller('authCtrl', function($scope, httpRequest) {
 
-    /*$scope.requestUser = function () {
-      httpRequest.retrieve('GET', 'api/get/docs').then(function success(res) {
-        console.log(res);
-      }, function error(res) {
-        console.log(res);
-        console.log('error');
-      });
+    $scope.authenticateUser = function () {
+      httpRequest.request('POST', 'login');
     };
 
     $scope.login = function(){
-      $scope.requestUser();
-    };*/
-
+      $scope.authenticateUser();
+    };
   });
-})();
+});

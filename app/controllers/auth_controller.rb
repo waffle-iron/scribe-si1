@@ -1,4 +1,8 @@
 class AuthController < ApplicationController
+  require 'json'
+
+  layout 'api', only: [:authenticate, :destroy]
+
   # POST /login
   def authenticate
   end
@@ -7,7 +11,7 @@ class AuthController < ApplicationController
   def login
   end
 
-  # GET /logout
-  def destroy
+  # POST /logout
+  def logout
   end
 end
