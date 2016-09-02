@@ -1,0 +1,42 @@
+<!-- container do preview do perfil do usuário -->
+<div id="profile">
+
+	<!-- avatar do usuário -->
+	<div class="profile-left">
+
+		<!-- wrapped com um link para configuração de client-side routes -->
+		<a href="#"><img src="imgs/chico.jpg" /></a>
+
+	</div>
+
+	<!-- container para alinhar nome do usuário e tipo de conta na direita -->
+	<div class="profile-right">
+
+		<!-- nome de usuário -->
+		<span class="profile-username">
+			{{ user.name }}
+
+			<!-- link para expandir o menu azul e mostrar mais funções -->
+			<a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
+		</span>
+
+		<br />
+
+		<!-- tipo de conta -->
+		<span class="profile-accounttype">{{ getAccountType() }}</span>
+	</div>
+
+	<!-- opções do menu lateral -->
+	<div class="profile-tabs">
+		<span ng-repeat="option in options">
+			<span
+			class="profile-tabs-option"
+			ng-class="{active : checkMenuTab ($index)}"
+			ng-click="setMenuTab($index)">
+
+				<i class="material-icons">{{ option.icon }}</i>
+			</span>
+		</span>
+	</div>
+
+</div>

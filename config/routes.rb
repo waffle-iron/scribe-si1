@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'document/new' => 'documents#create'
   get 'folder/new' => 'folders#create'
 
+  get 'directives/:path.html' => 'templates#directive', :constraints => { :path => /.+/  }
+
 #  scope '/api' do
 #    scope '/documents' do
 #      get '/all' => 'documents#index'

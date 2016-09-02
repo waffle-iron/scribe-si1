@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="ScribeApp">
+    <head>
+        <title>Scribe - Drive</title>
+
+        <%= csrf_meta_tags %>
+
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Arimo:700" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <%= yield %>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    </body>
+</html>

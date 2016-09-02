@@ -1,0 +1,19 @@
+<!-- container do logo, wrapped com um link que redireciona para o ínicio -->
+<span class="mdl-layout-title menu-logo"><a href="/">
+    <img src="imgs/logo.png" />
+    <span class="menu-title">Scribe</span>
+</a></span>
+
+<!-- container do menu -->
+<nav class="mdl-navigation">
+
+	<!-- profile e tabs -->
+	<profile-preview></profile-preview>
+
+    <!-- container dos menus das tabs -->
+    <div id="menu">
+		<!-- tab principal : main menu -->
+        <main-menu ng-show="checkMenuTab(0)"></main-menu>
+    </div>
+
+</nav>

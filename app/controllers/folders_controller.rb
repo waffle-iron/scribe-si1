@@ -1,4 +1,7 @@
 class FoldersController < ApplicationController
+
+  layout 'drive', only: [:index]
+
   def index
   end
 
