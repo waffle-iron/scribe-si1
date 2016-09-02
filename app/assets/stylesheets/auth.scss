@@ -1,24 +1,65 @@
 // Place all the styles related to the Auth controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+main {
+	height: 270px !important;
+}
+
 .mdl-layout {
 	align-items: center;
   align-content: center;
 }
 
 .mdl-layout__content {
-	padding: 24px;
-	flex: none;
-  position: absolute;
-  top: 50%;
-  margin-top: -190px;
+	width: 100%;
+	height: 100%;
+}
+
+.mdl-card {
+	position: absolute !important;
+	top: 50%;
+	left: 50%;
+	margin-top: -160px;
+	margin-left: -250px;
+	width: 500px !important;
+}
+
+.mdl-card__title {
+	height: 100px;
+}
+
+.mdl-card__supporting-text {
+	margin: 0 auto;
+	width: 93% !important;
+}
+
+form {
+	padding-bottom: 10px;
 }
 
 .form-button {
   float: right;
-  margin: 10px;
+	margin: 0 3px !important;
+}
+
+.form-button[disabled] {
+	cursor: not-allowed !important;
+	color: rgba(0, 0, 0, 0.25) !important;
+	background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.mdl-textfield {
+	width: 100% !important;
+}
+
+.mdl-textfield__label:after {
+	background-color: #2196f3 !important;
+}
+
+.mdl-button--raised {
+	background-color: #2196f3 !important;
 }
 
 .layout-transparent {
-  background: url(https://dl.dropboxusercontent.com/u/32494584/hero-bg.jpg);
+  background: image-url('login-bg.png') repeat;
 }
