@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'login' => 'auth#login'
   post 'login' => 'auth#authenticate'
-  delete 'logout' => 'auth#destroy'
+  post 'logout' => 'auth#destroy'
 
   resources :documents
   resources :folders, :path => 'my-drive'
@@ -14,10 +14,9 @@ Rails.application.routes.draw do
   get 'document/new' => 'documents#create'
   get 'folder/new' => 'folders#create'
 
-
-  scope '/api' do
-    scope '/documents' do
-      get '/all' => 'documents#index'
-    end
-  end
+#  scope '/api' do
+#    scope '/documents' do
+#      get '/all' => 'documents#index'
+#    end
+#  end
 end

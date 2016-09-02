@@ -11,7 +11,7 @@ class AuthController < ApplicationController
   def login
   end
 
-  # POST /logout
-  def logout
+  # POST /destroy
+  def destroy
   end
 end
