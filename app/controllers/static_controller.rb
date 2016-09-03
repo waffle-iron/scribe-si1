@@ -1,4 +1,4 @@
-class TemplatesController < ApplicationController
+class StaticController < ApplicationController
   def directive
     @path = params[:path]
     render :template => 'directives/' + @path, :layout => nil

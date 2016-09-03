@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get 'document/new' => 'documents#create'
   get 'folder/new' => 'folders#create'
 
-  get 'directives/:path.html' => 'templates#directive', :constraints => { :path => /.+/  }
+  # isso será removido, juntamente com o StaticController
+  # todas as dependências do angular ficarão em /public
+  get 'directives/:path.html' => 'static#directive', :constraints => { :path => /.+/  }
 
 #  scope '/api' do
 #    scope '/documents' do

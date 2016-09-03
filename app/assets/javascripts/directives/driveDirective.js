@@ -3,7 +3,7 @@
 
 		return {
 			restrict: 'E',
-			templateUrl: '../views/directives/driveView.html',
+			templateUrl: '../directives/driveView.html',
 			controller: 'driveController'
 		};
 

@@ -4,7 +4,7 @@
     $scope.authenticateUser = function (token) {
       request_body = {
         'authenticity_token': token,
-        'auth': {
+        'user': {
           'email': $scope._email,
           'password': $scope._password
         }
