@@ -22,13 +22,14 @@
 
 	<!-- lista de arquivos dentro da pasta atual sendo visitada -->
 	<span class="mdl-grid drive-item" ng-repeat="item in getCurrentFolder().contents track by $index">
-		<span class="mdl-cell mdl-cell--5-col" ng-click="fileAction(item)">
+		<span class="mdl-cell mdl-cell--4-col" ng-click="fileAction(item)">
 			<i class="material-icons">{{ getIcon(item) }}</i>
 			{{ item.name }}
 		</span>
-		<span class="mdl-cell mdl-cell--2-col">{{ item.owner }}</span>
-		<span class="mdl-cell mdl-cell--3-col">{{ item.update | date}}</span>
+		<span class="mdl-cell mdl-cell--3-col">{{ item.owner }}</span>
+		<span class="mdl-cell mdl-cell--2-col">{{ item.update | date}}</span>
 		<span class="mdl-cell mdl-cell--2-col">{{ item.size }}</span>
+		<span class="mdl-cell mdl-cell--1-col"><i class="material-icons">{{ item.permissions.icon }}</i> {{ item.permissions.tooltip }}</span>
 	</span>
 
 </div>

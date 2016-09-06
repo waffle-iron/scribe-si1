@@ -1,22 +1,23 @@
 (function () {
 	angular.module('ScribeApp')
-	.controller('driveController', function ($scope, files) {
+	.controller('shareController', function ($scope, share) {
 
-		$scope.pagination = [files.getCurrentFolder()];
+		$scope.pagination = [share.getCurrentFolder()];
 
 		$scope.gridHeader = [
-			{ name: 'Nome', icon: 'sort_by_alpha', col: 5 },
-			{ name: 'Proprietário', icon: 'person', col: 2 },
-			{ name: 'Última Modificação', icon: 'access_time', col: 3 },
-			{ name: 'Tamanho', icon: 'insert_drive_file', col: 2 }
+			{ name: 'Nome', icon: 'sort_by_alpha', col: 4 },
+			{ name: 'Proprietário', icon: 'person', col: 3 },
+			{ name: 'Última Modificação', icon: 'access_time', col: 2 },
+			{ name: 'Tamanho', icon: 'insert_drive_file', col: 2 },
+			{ name: 'Permissões', icon: 'info_outline', col: 1 }
 		];
 
 		$scope.getCurrentFolder = function () {
-			return files.getCurrentFolder();
+			return share.getCurrentFolder();
 		};
 
 		$scope.setCurrentFolder = function (index) {
-			files.setCurrentFolder($scope.pagination[index]);
+			share.setCurrentFolder($scope.pagination[index]);
 			$scope.pagination.splice(index + 1, $scope.pagination.length - index + 1);
 		};
 
@@ -25,7 +26,7 @@
 				// do something
 				return;
 			} else {
-				files.setCurrentFolder(item);
+				share.setCurrentFolder(item);
 				$scope.pagination.push(item);
 			}
 		};
