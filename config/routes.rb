@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'login' => 'auth#login'
   post 'login' => 'auth#authenticate'
-  post 'logout' => 'auth#destroy'
+  get 'logout' => 'auth#destroy'
 
   resources :documents
   resources :folders, :path => 'my-drive'

@@ -1,6 +1,7 @@
 class AuthController < ApplicationController
+  include AuthHelper
   require 'json'
-
+  before_action :is_logged_in?, only: [:login]
   layout 'api', only: [:authenticate, :destroy]
 
   # POST /login
@@ -8,18 +9,24 @@ class AuthController < ApplicationController
     email = params[:user][:email]
     password = params[:user][:password]
 
-    @user = User.find_by email: email
+    @user = User.find_by(email: email)
 
     if @user.blank?
-      puts 'Usuario nao encontrado'
+      #usuario nao encontrado
     else
-      puts 'Usuario encontrado com sucesso'
+      #usuario encontrado
       if @user && @user.authenticate(password)
-        session[:current_user_id] = @user.id
-        puts session
-        puts 'senha correta'
+        #senha correta, criar sessao
+        render status: 200,
+               json: {
+                   success: true,
+                   info: "Authenticated",
+                   data: {
+                       success: true,
+                   }
+               }
       else
-        puts 'senha incorreta'
+        #senha incorreta, redirecionar para a tela de login
       end
     end
   end
@@ -28,9 +35,8 @@ class AuthController < ApplicationController
   def login
   end
 
-  # POST /destroy
+  # GET /logout
   def destroy
+    destroy_session if session[:current_user_id]
   end
-
-  private
 end
