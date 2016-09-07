@@ -17,9 +17,9 @@
 
   	<body>
   	<!-- Sempre mostra um header, mesmo tem telas pequenas -->
-  	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  	<div class="mdl-layout mdl-js-layout">
       
-      	<header id="header" class="mdl-layout__header">
+      	<header id="header" class="mdl-layout__header mdl-layout__header--scroll">
         	
         	<!-- Botão = -->
         	<div class="mdl-layout__header-row">
@@ -48,8 +48,8 @@
       		<!-- Navegação superior. Escondemos isso em telas menores -->
       		<div class="mdl-navigation mdl-layout--large-screen-only">
       			<main class="mdl-layout__content">
-					<button class="mdl-button mdl-button--raised">TXT</button>
-					<button class="mdl-button mdl-button--raised">MD</button>
+					<button class="mdl-button mdl-button--raised" style="color: #fafafa">TXT</button>
+					<button class="mdl-button mdl-button--raised" style="color: #fafafa">MD</button>
 				</main>
       		</div>
 
@@ -67,8 +67,8 @@
       	</div>
 
       	<!-- Corpo da página -->
-  	    <main class="mdl-grid">
-            <div class="mdl-color--white mdl-shadow--4dp">
+  	    <div class="mdl-grid">
+            <div class="mdl-color--white mdl-shadow--4dp mdl-blank-page">
                 <div class="mdl-editor mdl-text__area">
                     <h2>Este é seu novo arquivo!</h2>
 
@@ -77,16 +77,16 @@
                     </p>
                 </div>
             </div>
-        </main>
-
-      	<!-- Botão de Salvar -->
-      	<div class="mdl-button__footer">
-		    <button class="mdl-button mdl-button--fab">
-		    	<i class="material-icons">save</i>
-		    </button>
-		</div>
+        </div>
 
     </div>
+
+    <!-- Botão de Salvar -->
+  	<div class="mdl-button__footer">
+	    <button class="mdl-button mdl-button--fab">
+	    	<i class="material-icons">save</i>
+	    </button>
+	</div>
 
   </body>
 </html>
