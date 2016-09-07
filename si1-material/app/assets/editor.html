@@ -1,64 +1,92 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>Editor - Scribe</title>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
-        <link rel="stylesheet" href="stylesheets/editor.min.css">
+  	<head>
+  
+	    <meta charset="UTF-8">
+	    <title>Scribe - Editor</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Arimo:700" rel="stylesheet">
-    </head>
+	    <link rel="stylesheet" href="stylesheets/editor.css">
+	    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <body>
-        <div class="mdl-layout">
-            <div id="header" class="mdl-layout__header-row">
-                
-                <a href="#" id="menutoggle" class="menutoggle">
-                    <i class="material-icons">menu</i>
-                </a>
+	    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+	    <script src='js/tinymce/tinymce.min.js'></script>
+	    <script src="js/editor.js"></script>
 
-                <div id="pagination">
-                    <span class="pagination-item pagination-root">
-                        Meu Drive
-                        <i class="material-icons">keyboard_arrow_right</i>
-                    </span>
-                    <span class="pagination-item pagination-root">
-                        Teste
-                        <i class="material-icons">keyboard_arrow_right</i>
-                    </span>
-                    <span class="pagination-item pagination-root">
-                        <div class="mdl-textfield mdl-js-textfield">
-				<input class="mdl-textfield__input" type="text" placeholder="Nome do arquivo">
-			</div>
-                    </span>
+  	</head>
+
+  	<body>
+  	<!-- Sempre mostra um header, mesmo tem telas pequenas -->
+  	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      
+      	<header id="header" class="mdl-layout__header">
+        	
+        	<!-- Botão = -->
+        	<div class="mdl-layout__header-row">
+          
+          	<!-- Local do arquivo -->
+          	<div id="pagination">
+	        	<span class="pagination-item">
+	            	Meu Drive
+	            	<i class="material-icons">keyboard_arrow_right</i>
+	        	</span>
+	        	<span class="pagination-item">
+	            	Pasta
+	            	<i class="material-icons">keyboard_arrow_right</i>
+	        	</span>
+	        	<span class="pagination-item pagination-root">
+	            	<div class="mdl-textfield mdl-js-textfield">
+	            		<!-- Nome do arquivo no input em >< -->
+						<input class="mdl-textfield__input" type="text" placeholder="Nome do arquivo"></input>
+					</div>
+	        	</span>
+	      	</div>
+
+          	<!-- Espaçamento para a direita -->
+         	<div class="mdl-layout-spacer"></div>
+      		
+      		<!-- Navegação superior. Escondemos isso em telas menores -->
+      		<div class="mdl-navigation mdl-layout--large-screen-only">
+      			<main class="mdl-layout__content">
+					<button class="mdl-button mdl-button--raised">TXT</button>
+					<button class="mdl-button mdl-button--raised">MD</button>
+				</main>
+      		</div>
+
+      	</header>
+
+      	<!-- Menu do botão de opções lateral -->
+      	<div class="mdl-layout__drawer">
+        	<span class="mdl-layout-title">Opções</span>
+        	<nav class="mdl-navigation">
+          		<a class="mdl-navigation__link" href="">Opção 1</a>
+          		<a class="mdl-navigation__link" href="">Opção 2</a>
+          		<a class="mdl-navigation__link" href="">Opção 3</a>
+          		<a class="mdl-navigation__link" href="">Opção 4</a>
+        	</nav>
+      	</div>
+
+      	<!-- Corpo da página -->
+  	    <main class="mdl-grid">
+            <div class="mdl-color--white mdl-shadow--4dp">
+                <div class="mdl-editor mdl-text__area">
+                    <h2>Este é seu novo arquivo!</h2>
+
+                    <p>
+                    Para editá-lo, use o botão direito do mouse ou selecione o texto que deseja alterar :-)
+                    </p>
                 </div>
             </div>
+        </main>
 
-            <div class="mdl-grid">
-                <div class="mdl-color--white mdl-shadow--4dp">
-                    <div class="tinymce mdl-text__area">
-                        <h2>Bem-vindo(a) ao seu novo arquivo</h2>
+      	<!-- Botão de Salvar -->
+      	<div class="mdl-button__footer">
+		    <button class="mdl-button mdl-button--fab">
+		    	<i class="material-icons">save</i>
+		    </button>
+		</div>
 
-                        <p>
-                        Esse é um exemplo de escrita de arquivo. Para editá-lo, use o botão direito do mouse ou clique sobre o texto que deseja editar para ver as opções :-)
-                        </p>
-                    </div>
-                </div>
-            </div>
+    </div>
 
-            <div class="mdl-button__footer">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-                  <i class="material-icons">save</i>
-                </button>
-            </div>
-
-        </div>
-
-        <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
-        <script src='js/tinymce/tinymce.min.js'></script>
-        <script src="js/editor.js"></script>
-
-    </body>
+  </body>
 </html>

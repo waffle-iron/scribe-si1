@@ -1,5 +1,5 @@
 tinymce.init({
-  selector: 'div.tinymce',
+  selector: 'div.mdl-editor',
   theme: 'inlite',
   language: 'pt_BR',
   entity_encoding : "raw",
@@ -7,7 +7,7 @@ tinymce.init({
   cleanup : false,
   inline: true,
   paste_data_images: true,
-  plugins: 'image table link paste contextmenu textpattern autolink',
+  plugins: 'image table link paste contextmenu textpattern autolink preview',
   insert_toolbar: 'quickimage quicktable',
   selection_toolbar: 'bold italic styleselect | quicklink blockquote | alignleft aligncenter alignright alignjustify',
   content_css: [
