@@ -1,5 +1,5 @@
 <% content_for :title_description do %> - Entrar<% end %>
-<div class="layout-transparent mdl-layout mdl-js-layout" ng-controller="authController">
+<div class="layout-transparent mdl-layout mdl-js-layout">
   <main class="mdl-layout__content">
     <div class="mdl-card mdl-shadow--6dp">
       <div class="mdl-card__title mdl-color-text--white">
@@ -8,17 +8,17 @@
       <form ng-submit="login('<%= form_authenticity_token %>')">
         <div class="mdl-card__supporting-text">
           <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" ng-model="_email" type="email" id="email" />
+            <input name="email" class="mdl-textfield__input" ng-model="_email" type="email" id="email" />
             <label class="mdl-textfield__label" for="email">E-mail</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" ng-model="_password" type="password" id="userpass" />
+            <input name="password" class="mdl-textfield__input" ng-model="_password" type="password" id="userpass" />
             <label class="mdl-textfield__label" for="userpass">Senha</label>
           </div>
         </div>
         <div class="mdl-card__actions">
           <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color-text--white form-button" ng-disabled="!_email || !_password">Entrar</button>
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent form-button">Registrar</button>
+          <a ng-click="showRegisterForm()" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent form-button">Registrar</a>
         </div>
       </form>
     </div>

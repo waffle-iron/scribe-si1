@@ -21,6 +21,10 @@ main {
 	width: 500px !important;
 }
 
+.mdl-card.register-card {
+	margin-top: -298px 
+}
+
 .mdl-card__title {
 	background-color: #505b72 !important;
 	height: 100px;
