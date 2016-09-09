@@ -3,28 +3,24 @@
 	.controller('profilePreviewController', function ($scope, $cookies, $http, tabs, user) {
 		var current_user_id = $cookies.getObject('current_user_id')
 
-		// atributos do usuário, retirados do userService
-		$scope.user = {
-			name: user.getUsername(),
-			avatarPath: user.getAvatarPath(),
-			premiumUser: user.isPremiumUser(),
-		};
-
-		$http.get('users/' + current_user_id + '.json').then(
-			function (res) {
-				console.log("Success");
+		var getUserInfo = function(){
+			user.getCurrentUser(current_user_id).success(function(res) {
 				console.log(res);
-				$scope.user.name = res.data.first_name + " " + res.data.last_name;
-			}, function (res) {
-				console.log("Error");
-			}
-		);
+				console.log(user.getUserInfo(res));
+				$scope.user = user.getUserInfo(res);
+			}).error(function(error) {
+				console.log(error);
+			});
+		}
+
+		// seta os dados do usuãrio no $scope
+		getUserInfo();
 
 		// tabs do menu azul de perfil
 		$scope.options = [
 			{ name: 'Menu Principal',	icon: 'reorder' },
 			{ name: 'Mensagens',		icon: 'email' },
-			{ name: 'Logout',		icon: 'exit_to_app', 	href: '/logout' }
+			{ name: 'Logout',			icon: 'exit_to_app' }
 		];
 
 		// seta o index da tab do menu azul
