@@ -24,9 +24,7 @@
 		$scope.options = [
 			{ name: 'Menu Principal',	icon: 'reorder' },
 			{ name: 'Mensagens',		icon: 'email' },
-			{ name: 'Perfil',			icon: 'account_circle' },
-			{ name: 'Configurações',	icon: 'settings' },
-			{ name: 'Logout',			icon: 'exit_to_app' }
+			{ name: 'Logout',		icon: 'exit_to_app', 	href: '/logout' }
 		];
 
 		// seta o index da tab do menu azul
