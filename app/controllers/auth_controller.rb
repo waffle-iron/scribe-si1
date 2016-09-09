@@ -21,6 +21,7 @@ class AuthController < ApplicationController
         render status: 200,
                json: {
                    success: true,
+                   current_user_id: @user.id,
                    info: "Authenticated",
                    data: {
                        success: true,
@@ -40,7 +41,6 @@ class AuthController < ApplicationController
   def destroy
     if session[:current_user_id]
       destroy_session
-      redirect_to :controller => 'auth', :action => 'login'
     end
   end
 end

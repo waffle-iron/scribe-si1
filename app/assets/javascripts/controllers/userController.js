@@ -1,5 +1,5 @@
 (function () {
-  angular.module('ScribeApp').controller('userController', function($scope, $window, httpRequest) {
+  angular.module('ScribeApp').controller('userController', function($scope, $window, $cookies, httpToolsService) {
 
     $scope.authenticateUser = function (token) {
       request_body = {
@@ -10,7 +10,21 @@
         }
       };
 
-      httpRequest.request('POST', 'login', request_body);
+      httpToolsService.request('POST', 'login', request_body)
+      .then(function success(res) {
+        console.log("Request made successfully!");
+        console.log("For debugging reasons, this is your response:");
+        console.log(res);
+
+        if (res.data.success) {
+          $cookies.put("current_user_id", res.data.current_user_id)
+          httpToolsService.redirect('/my-drive');
+        }
+      }, function error(res) {
+        console.log("An error ocurred while sending your POST request to /login");
+        console.log("For debugging reasons, this is your response:");
+        console.log(res);
+      });
     };
 
     $scope.createUser = function (token) {
@@ -25,7 +39,8 @@
         }
       }
 
-      httpRequest.request('POST', 'users', request_body);
+      httpToolsService.request('POST', 'users', request_body);
+      httpToolsService.redirect('/login');
     };
 
     $scope.login = function(token){
@@ -37,7 +52,7 @@
     };
 
     $scope.showRegisterForm = function(){
-      $window.location.href = '/register';
+      httpToolsService.redirect('/register');
     };
   });
 })();

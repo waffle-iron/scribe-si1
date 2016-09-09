@@ -1,3 +1,3 @@
 (function () {
-  angular.module('ScribeApp', []);
+  angular.module('ScribeApp', ['ngCookies']);
 })();

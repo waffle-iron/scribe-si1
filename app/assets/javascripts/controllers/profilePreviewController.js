@@ -1,13 +1,24 @@
 (function () {
 	angular.module('ScribeApp')
-	.controller('profilePreviewController', function ($scope, tabs, user) {
+	.controller('profilePreviewController', function ($scope, $cookies, $http, tabs, user) {
+		var current_user_id = $cookies.getObject('current_user_id')
 
 		// atributos do usuário, retirados do userService
 		$scope.user = {
 			name: user.getUsername(),
 			avatarPath: user.getAvatarPath(),
-			premiumUser: user.isPremiumUser()
+			premiumUser: user.isPremiumUser(),
 		};
+
+		$http.get('users/' + current_user_id + '.json').then(
+			function (res) {
+				console.log("Success");
+				console.log(res);
+				$scope.user.name = res.data.first_name + " " + res.data.last_name;
+			}, function (res) {
+				console.log("Error");
+			}
+		);
 
 		// tabs do menu azul de perfil
 		$scope.options = [

@@ -7,14 +7,43 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => @user.to_json
+      }
+    end
+  end
+
   # POST /users
   def create
     @user = User.new(get_request_params)
 
     if @user.save
-      redirect_to :controller => 'auth', :action => 'login'
+      render status: 200,
+             json: {
+               info: "Account created",
+               data: {
+                 success: true,
+                 msg: "Usuário criado com sucesso!"
+               }
+             }
     else
-      # usuario não registrado por algum motivo, provavelmente email ou nome de usuário já existem, exibir mensagem de erro baseada nisso
+      render status: 500,
+             json: {
+               info: "Account not created",
+               success: false,
+               msg: "E-mail já registrado. Por favor, escolha outro"
+             } if unavailable_email?
+
+      render status: 500,
+             json: {
+               info: "Account not created",
+               success: false,
+               msg: "Nome de usuário já registrado. Por favor, escolha outro"
+             } if unavailable_username?
     end
   end
 
@@ -28,6 +57,6 @@ class UsersController < ApplicationController
   end
 
   def unavailable_username?
-    User.exists?(email: @user.username)
+    User.exists?(username: @user.username)
   end
 end

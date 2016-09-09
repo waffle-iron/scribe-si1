@@ -17,4 +17,8 @@ module ApplicationHelper
   def redirect_to_login
     redirect_to :controller => 'auth', :action => 'login'
   end
+
+  def get_current_user
+    @user ||= User.find(session[:current_user_id]) if session[:current_user_id]
+  end
 end
