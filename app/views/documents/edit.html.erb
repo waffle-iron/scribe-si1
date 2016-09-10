@@ -1,2 +1,58 @@
-<h1>Documents#edit</h1>
-<p>Find me in app/views/documents/edit.html.erb</p>
+<!-- Sempre mostra um header, mesmo tem telas pequenas -->
+<div class="mdl-layout mdl-js-layout">
+
+  	<header id="header" class="mdl-layout__header mdl-layout__header--scroll">
+
+    	<!-- Botão = -->
+    	<div class="mdl-layout__header-row">
+
+      	<!-- Local do arquivo -->
+      	<div id="pagination">
+      	<pagination></pagination>
+      	<span class="pagination-item pagination-root">
+          	<div class="mdl-textfield mdl-js-textfield">
+          		<!-- Nome do arquivo no input em >< -->
+				<input class="mdl-textfield__input" type="text" placeholder="Nome do arquivo"></input>
+			</div>
+      	</span>
+    	</div>
+
+      	<!-- Espaçamento para a direita -->
+     	<div class="mdl-layout-spacer"></div>
+
+  		<!-- Navegação superior. Escondemos isso em telas menores -->
+  		<div class="mdl-navigation mdl-layout--large-screen-only">
+  			<main class="mdl-layout__content">
+			<button class="mdl-button mdl-button--raised" style="color: #fafafa">TXT</button>
+			<button class="mdl-button mdl-button--raised" style="color: #fafafa">MD</button>
+		</main>
+  		</div>
+
+  	</header>
+
+  	<!-- Menu do botão de opções lateral -->
+  	<div class="mdl-layout__drawer">
+    	<span class="mdl-layout-title">Opções</span>
+    	<nav class="mdl-navigation">
+      		<a class="mdl-navigation__link" href="">Opção 1</a>
+      		<a class="mdl-navigation__link" href="">Opção 2</a>
+      		<a class="mdl-navigation__link" href="">Opção 3</a>
+      		<a class="mdl-navigation__link" href="">Opção 4</a>
+    	</nav>
+  	</div>
+
+  	<!-- Corpo da página -->
+    <div class="mdl-grid">
+        <div class="mdl-color--white mdl-shadow--4dp mdl-blank-page">
+          <textarea id="textArea" data-autoresize rows="2" class="mdl-editor mdl-text__area"></textarea>
+        </div>
+    </div>
+
+</div>
+
+<!-- Botão de Salvar -->
+<div class="mdl-button__footer">
+  <button class="mdl-button mdl-button--fab">
+  	<i class="material-icons">save</i>
+  </button>
+</div>
