@@ -27,8 +27,11 @@ localhost:3000
 
 ## Heroku
 
-* Scribe can be found in Heroku too, also click [here](scribe-ufcg.herokuapp.com)
+* Scribe can be found in Heroku too, also visit 
 
+```sh
+scribe-ufcg.herokuapp.com
+```
 ## Meta
 
 Gabriel Guimarães
