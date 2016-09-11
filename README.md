@@ -27,10 +27,10 @@ localhost:3000
 
 ## Heroku
 
-* Scribe can be find in heroku too, just access
+* Scribe can be found in Heroku too, also visit
 
 ```sh
-scribe-ufcg.herokuapp.com
+(scribe-ufcg.herokuapp.com)
 ```
 
 ## Meta
