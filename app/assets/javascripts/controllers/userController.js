@@ -21,11 +21,7 @@
           httpToolsService.redirect('/my-drive');
         } else {
           var notification = document.querySelector('.mdl-js-snackbar');
-          notification.MaterialSnackbar.showSnackbar(
-            {
-              message: res.data.msg
-            }
-          );
+          notification.MaterialSnackbar.showSnackbar({ message: res.data.msg });
         }
       }, function error(res) {
         console.log("An error ocurred while sending your POST request to /login");
@@ -46,8 +42,17 @@
         }
       }
 
-      httpToolsService.request('POST', 'users', request_body);
-      httpToolsService.redirect('/login');
+      httpToolsService.request('POST', 'users', request_body)
+      .then(function success(res) {
+        if (res.data.success) {
+          httpToolsService.redirect('/login');
+        } else {
+          var notification = document.querySelector('.mdl-js-snackbar');
+          notification.MaterialSnackbar.showSnackbar({ message: res.data.msg });  
+        }
+      }, function error(error) {
+        console.log(error);
+      });
     };
 
     $scope.login = function(token){

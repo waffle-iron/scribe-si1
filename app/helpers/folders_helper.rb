@@ -1,3 +1,3 @@
 module FoldersHelper
-  MAIN_FOLDER_NAME = 'Meu Drive'
+  DEFAULT_FOLDER_NAME = 'Meu Drive'
 end

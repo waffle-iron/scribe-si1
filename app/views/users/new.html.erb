@@ -36,12 +36,6 @@
           <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color-text--white form-button" ng-disabled="!_firstname || !_lastname || !_email || !_username || !_password || !_confirmpassword || !(_password == _confirmpassword)">Criar conta</button>
         </div>
       </form>
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %> fade in">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <%= value %>
-        </div>
-      <% end %>
     </div>
   </main>
 </div>

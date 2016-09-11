@@ -23,29 +23,26 @@ class UsersController < ApplicationController
 
     if @user.save
       create_default_tree(@user)
-      create
-      render status: 200,
+      render status: 201,
              json: {
-               info: "Account created",
-               data: {
-                 success: true,
-                 msg: "Usuário criado com sucesso!"
-               }
+                info: "Account created",
+                success: true,
+                msg: "Usuário criado com sucesso! :)"
              }
     else
-      render status: 500,
+      render status: 200,
              json: {
                info: "Account not created",
                success: false,
-               msg: "E-mail já registrado. Por favor, escolha outro"
-             } if unavailable_email?
-
-      render status: 500,
-             json: {
-               info: "Account not created",
-               success: false,
-               msg: "Nome de usuário já registrado. Por favor, escolha outro"
+               msg: "Nome de usuário já registrado. Por favor, escolha outro. :("
              } if unavailable_username?
+
+      render status: 200,
+             json: {
+               info: "Account not created",
+               success: false,
+               msg: "Endereço de email já registrado. Por favor, escolha outro. :("
+             } if unavailable_email?
     end
   end
 
@@ -65,7 +62,7 @@ class UsersController < ApplicationController
   def create_default_tree(user)
     @folder = Folder.create(name: DEFAULT_FOLDER_NAME, parent_folder: nil, user: user)
     @folder.save(:validate => false)
-    @file = File.create(name: DEFAULT_DOCUMENT_NAME, content: DEFAULT_DOCUMENT_CONTENT, extension: DEFAULT_DOCUMENT_EXTENSION, parent_folder: @folder, user: user)
-    @file.save
+    @document = Document.create(name: DEFAULT_DOCUMENT_NAME, content: DEFAULT_DOCUMENT_CONTENT, extension: DEFAULT_DOCUMENT_EXTENSION, folder: @folder, user: user)
+    @document.save
   end
 end

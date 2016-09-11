@@ -15,8 +15,9 @@ class AuthController < ApplicationController
       puts 'User not found'
       render status: 200,
              json: {
-                 success: false,
-                 msg: "Não existe um usuário com esse e-mail. :(",
+                success: false,
+                msg: "Não existe um usuário com esse e-mail. :(",
+                info: "Not authenticated"
              }
     else
       if @user && @user.authenticate(password)
@@ -24,16 +25,17 @@ class AuthController < ApplicationController
         new_session(@user)
         render status: 200,
                json: {
-                   success: true,
-                   current_user_id: @user.id,
-                   info: "Authenticated",
+                  success: true,
+                  current_user_id: @user.id,
+                  info: "Authenticated"
                }
       else
         puts 'Invalid password'
         render status: 200,
                json: {
-                   success: false,
-                   msg: "A senha que você forneceu está incorreta. :(",
+                  success: false,
+                  msg: "A senha que você forneceu está incorreta. :(",
+                  info: "Not authenticated"
                }
       end
     end
