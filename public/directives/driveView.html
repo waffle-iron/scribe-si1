@@ -1,6 +1,6 @@
 <div id="pagination">
 	<span class="pagination-item" ng-repeat="item in pagination">
-		<a href="#" ng-click="setCurrentFolder($index)">
+		<a href="" ng-click="setCurrentFolder($index)">
 			{{ item.name }}
 			<i class="material-icons" ng-show="showArrow($index)">keyboard_arrow_down</i>
 		</a>
@@ -27,8 +27,18 @@
 			{{ item.name }}
 		</span>
 		<span class="mdl-cell mdl-cell--2-col">{{ item.owner }}</span>
-		<span class="mdl-cell mdl-cell--3-col">{{ item.update | date}}</span>
+		<span class="mdl-cell mdl-cell--2-col">{{ item.update | date}}</span>
 		<span class="mdl-cell mdl-cell--2-col">{{ item.size }}</span>
+		<span class="mdl-cell mdl-cell--1-col" ng-click="shareFileDialog($event)" ng-show="item.type === 'file'"><i class="material-icons">share</i> COMPARTILHAR</span>
 	</span>
 
+</div>
+
+<div class="mdl-button__footer">
+	<button class="mdl-button mdl-button--fab mdl-button--primary mdl-button_ofleft" ng-click="createFileDialog($event)">
+  	<i class="material-icons">note_add</i>
+  </button>
+  <button class="mdl-button mdl-button--fab mdl-button--primary" ng-click="createFolderDialog($event)">
+  	<i class="material-icons">create_new_folder</i>
+  </button>
 </div>
