@@ -29,13 +29,9 @@
 	<!-- opções do menu lateral -->
 	<div class="profile-tabs">
 		<span ng-repeat="option in options">
-			<span
-			class="profile-tabs-option"
-			ng-class="{active : checkMenuTab ($index)}"
-			ng-click="setMenuTab($index)">
-
+			<a href="{{ option.href }}" class="profile-tabs-option" ng-class="{active : checkMenuTab ($index)}" ng-click="setMenuTab($index)">
 				<i class="material-icons">{{ option.icon }}</i>
-			</span>
+			</a>
 		</span>
 	</div>
 

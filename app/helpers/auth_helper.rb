@@ -1,5 +1,6 @@
 module AuthHelper
   def new_session(user)
+    puts 'Session created!'
     session[:current_user_id] = user.id
   end
 

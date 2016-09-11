@@ -22,6 +22,8 @@ class UsersController < ApplicationController
     @user = User.new(get_request_params)
 
     if @user.save
+      create_default_tree(@user)
+      create
       render status: 200,
              json: {
                info: "Account created",
@@ -58,5 +60,12 @@ class UsersController < ApplicationController
 
   def unavailable_username?
     User.exists?(username: @user.username)
+  end
+
+  def create_default_tree(user)
+    @folder = Folder.create(name: DEFAULT_FOLDER_NAME, parent_folder: nil, user: user)
+    @folder.save(:validate => false)
+    @file = File.create(name: DEFAULT_DOCUMENT_NAME, content: DEFAULT_DOCUMENT_CONTENT, extension: DEFAULT_DOCUMENT_EXTENSION, parent_folder: @folder, user: user)
+    @file.save
   end
 end

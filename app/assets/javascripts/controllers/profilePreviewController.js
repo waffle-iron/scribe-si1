@@ -13,14 +13,14 @@
 			});
 		}
 
-		// seta os dados do usuãrio no $scope
+		// seta os dados do usuário no $scope
 		getUserInfo();
 
 		// tabs do menu azul de perfil
 		$scope.options = [
-			{ name: 'Menu Principal',	icon: 'reorder' },
-			{ name: 'Mensagens',		icon: 'email' },
-			{ name: 'Logout',			icon: 'exit_to_app' }
+			{ name: 'Menu Principal',	icon: 'reorder', href: '' },
+			{ name: 'Mensagens',		icon: 'email', href: '' },
+			{ name: 'Logout',			icon: 'exit_to_app', href: '/logout' }
 		];
 
 		// seta o index da tab do menu azul

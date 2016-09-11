@@ -12,23 +12,29 @@ class AuthController < ApplicationController
     @user = User.find_by(email: email)
 
     if @user.blank?
-      #usuario nao encontrado
+      puts 'User not found'
+      render status: 200,
+             json: {
+                 success: false,
+                 msg: "Não existe um usuário com esse e-mail. :(",
+             }
     else
-      #usuario encontrado
       if @user && @user.authenticate(password)
-        #senha correta, criar sessao
-        new_session @user
+        puts 'Valid password, creating session...'
+        new_session(@user)
         render status: 200,
                json: {
                    success: true,
                    current_user_id: @user.id,
                    info: "Authenticated",
-                   data: {
-                       success: true,
-                   }
                }
       else
-        #senha incorreta
+        puts 'Invalid password'
+        render status: 200,
+               json: {
+                   success: false,
+                   msg: "A senha que você forneceu está incorreta. :(",
+               }
       end
     end
   end
