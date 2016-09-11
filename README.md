@@ -25,6 +25,14 @@ rails s
 localhost:3000
 ```
 
+## Heroku
+
+* Scribe can be find in heroku too, just access
+
+```sh
+scribe-ufcg.herokuapp.com
+```
+
 ## Meta
 
 Gabriel Guimarães
