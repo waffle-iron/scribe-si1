@@ -4,7 +4,7 @@
 
 		$scope.pagination = [files.getCurrentFolder()];
 
-		$scope.gridHeader = [
+		$scope.gridHeaderDrive = [
 			{ name: 'Nome', icon: 'sort_by_alpha', col: 5 },
 			{ name: 'Proprietário', icon: 'person', col: 2 },
 			{ name: 'Última Modificação', icon: 'access_time', col: 2 },

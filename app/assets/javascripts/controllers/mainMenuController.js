@@ -8,8 +8,6 @@
 		$scope.links = [
 			{ name: 'Meu Drive', 		icon: 'folder' },
 			{ name: 'Compartilhados',	icon: 'folder_shared' },
-			{ name: 'Excluídos',		icon: 'delete' },
-			{ name: 'Favoritos',		icon: 'star' }
 		];
 
 		$scope.setMainTab = function (index) {
@@ -19,16 +17,6 @@
 		$scope.checkMainTab = function (index) {
 			return tabs.main.get() === index;
 		};
-
-		// título do menu de arquivos recentes
-		$scope.recentHeader = "Arquivos Recentes"
-
-		$scope.recentFiles = [
-			{ name: 'Prova de Cálculo' },
-			{ name: 'Lista de Lógica' },
-			{ name: 'AngularJS Basics v1' },
-			{ name: 'Learn AngularJS' },
-		];
 
 	});
 })();
