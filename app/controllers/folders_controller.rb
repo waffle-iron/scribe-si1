@@ -35,6 +35,16 @@ class FoldersController < ApplicationController
   end
 
   def create
+    @folder = Folder.new(get_request_params)
+
+    if @folder.save
+      render status: 201,
+             json: {
+               info: "Folder created",
+               success: true,
+               msg: "Sua pasta foi criada com sucesso! :)"
+             }
+     end
   end
 
   def edit
@@ -44,5 +54,10 @@ class FoldersController < ApplicationController
   end
 
   def delete
+  end
+
+  private
+  def get_request_params
+    params.permit(:name, :parent_folder_id, :user_id)
   end
 end
