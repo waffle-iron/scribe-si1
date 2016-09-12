@@ -26,7 +26,7 @@
 		};
 
 		$scope.getFullName = function () {
-			return userData.first_name + " " + userData.last_name;
+			return $scope.userData.first_name + " " + $scope.userData.last_name;
 		};
 
 	});
