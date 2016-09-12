@@ -4,18 +4,18 @@
 		var current_root_folder_id = $cookies.getObject('current_root_folder_id');
 
 		// current folder
-		$scope.currentFolder = files.getRootFolder(current_root_folder_id).then(
-			function (res) { $scope.currentFolder = res; },
+		/*$scope.currentFolder = files.getRootFolder(current_root_folder_id).then(
+			function (res) { $scope.currentFolder = res.data; },
 			function (err) { console.log(err); }
 		);
 
 		// contents of the current folder
 		$scope.contents = files.getChildren(current_root_folder_id).then(
-			function (res) { $scope.contents = res; },
+			function (res) { $scope.contents = res.data; },
 			function (err) { console.log(err); }
 		);
 
-		$scope.pagination = [$scope.currentFolder];
+		$scope.pagination = [$scope.currentFolder];*/
 
 		$scope.gridHeader = [
 			{ name: 'Nome', icon: 'sort_by_alpha', col: 5 },
@@ -30,12 +30,12 @@
 
 		$scope.setCurrentFolder = function (item) {
 			$scope.currentFolder = files.getRootFolder(current_root_folder_id).then(
-				function (res) { $scope.currentFolder = res; },
+				function (res) { $scope.currentFolder = res.data; },
 				function (err) { console.log(err); }
 			);
 
 			$scope.contents = files.getChildren(current_root_folder_id).then(
-				function (res) { $scope.contents = res; },
+				function (res) { $scope.contents = res.data; },
 				function (err) { console.log(err); }
 			);
 
@@ -60,6 +60,9 @@
 				$timeout(function () {
 					// sets the current folder and contents
 					$scope.setCurrentFolder(item);
+
+					// refresh the page with the changes
+					$scope.apply();
 				}, 1000);
 			}
 		};
@@ -72,6 +75,15 @@
 		$scope.showArrow = function (index) {
 			return index === $scope.pagination.length - 1;
 		};
+
+		$scope.currentFolder = {};
+		$scope.contents = [];
+		$scope.pagination = [];
+
+		$scope.fileAction(files.getRootFolder(current_root_folder_id).then(
+			function (res) { return res.data; },
+			function (err) { console.log(err); }
+		));
 
 	});
 })();
