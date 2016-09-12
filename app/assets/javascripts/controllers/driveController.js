@@ -62,7 +62,7 @@
 					$scope.setCurrentFolder(item);
 
 					// refresh the page with the changes
-					$scope.apply();
+					$scope.$apply();
 				}, 1000);
 			}
 		};
@@ -80,10 +80,12 @@
 		$scope.contents = [];
 		$scope.pagination = [];
 
-		$scope.fileAction(files.getRootFolder(current_root_folder_id).then(
-			function (res) { return res.data; },
-			function (err) { console.log(err); }
-		));
+		$timeout(function () {
+			$scope.fileAction(files.getRootFolder(current_root_folder_id).then(
+				function (res) { return res.data; },
+				function (err) { console.log(err); }
+			));
+		}, 50);
 
 	});
 })();
