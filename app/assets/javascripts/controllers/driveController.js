@@ -19,22 +19,26 @@
 
 		// sets the current folder.
 		$scope.setCurrentFolder = function (item) {
-			$scope.currentFolder = files.getRootFolder(current_root_folder_id).then(
-				function (res) { $scope.currentFolder = res.data; },
-				function (err) { console.log(err); }
-			);
+			$scope.setCurrentFolderId(item);
 
-			$scope.contents = files.getChildren(current_root_folder_id).then(
-				function (res) { $scope.contents = res.data; },
-				function (err) { console.log(err); }
-			);
+			$timeout(function () {
+				$scope.currentFolder = files.getRootFolder(current_root_folder_id).then(
+					function (res) { $scope.currentFolder = res.data; },
+					function (err) { console.log(err); }
+				);
 
-			var index = $scope.pagination.indexOf(item);
+				$scope.contents = files.getChildren(current_root_folder_id).then(
+					function (res) { $scope.contents = res.data; },
+					function (err) { console.log(err); }
+				);
 
-			if (!index)
-				$scope.pagination.splice(index + 1, $scope.pagination.length - index + 1);
-			else
-				$scope.pagination.push(item);
+				var index = $scope.pagination.indexOf(item);
+
+				if (!index)
+					$scope.pagination.splice(index + 1, $scope.pagination.length - index + 1);
+				else
+					$scope.pagination.push(item);
+			}, 100);
 		};
 
 		// action() when a file or folder is clicked on the list.
@@ -43,18 +47,11 @@
 				// do something
 				return;
 			} else {
-				// sets the new ID
-				$scope.setCurrentFolderId(item);
+				// sets the current folder and contents
+				$scope.setCurrentFolder(item);
 
-				// delays the call for 1000ms, so it is processed after we set the
-				// currentFolderId.
-				$timeout(function () {
-					// sets the current folder and contents
-					$scope.setCurrentFolder(item);
-
-					// refresh the page with the changes
-					$scope.$apply();
-				}, 1000);
+				// refresh the page with the changes
+				$scope.$apply();
 			}
 		};
 
