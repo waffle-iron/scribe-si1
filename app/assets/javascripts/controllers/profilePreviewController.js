@@ -4,12 +4,8 @@
 		var current_user_id = $cookies.getObject('current_user_id')
 
 		$scope.userData = user.getUserData(current_user_id).then(
-			function (res) {
-				$scope.userData = res;
-			},
-			function (err) {
-				console.log("chicu is gay");
-			}
+			function (res) { $scope.userData = res.data; },
+			function (err) { console.log(err); }
 		);
 
 		// tabs do menu azul de perfil
