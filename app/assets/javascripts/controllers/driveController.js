@@ -80,12 +80,21 @@
 		$scope.contents = [];
 		$scope.pagination = [];
 
-		$timeout(function () {
-			$scope.fileAction(files.getRootFolder(current_root_folder_id).then(
-				function (res) { return res.data; },
-				function (err) { console.log(err); }
-			));
-		}, 50);
+		files.getRootFolder(current_root_folder_id) {
+			function (res) {
+				$scope.currentFolder = res.data;
+				$scope.pagination.push($scope.currentFolder);
+
+				files.getChildren(current_root_folder_id) {
+					function (res) {
+						$scope.contents = res.data;
+						$scope.$apply();
+					},
+					function (err) { console.log(err); }
+				}
+			},
+			function (err) { console.log(err); }
+		}
 
 	});
 })();
