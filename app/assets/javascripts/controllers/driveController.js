@@ -1,42 +1,21 @@
 (function () {
 	angular.module('ScribeApp')
-	.controller('driveController', function ($scope, $cookies, files) {
+	.controller('driveController', function ($scope, $cookies, $timeout, files) {
 		var current_root_folder_id = $cookies.getObject('current_root_folder_id');
-		contents = [];
 
-		var getCurrentChildrenFolders = function(current_folder_id) {
-			files.getChildrenFolders(current_folder_id).success(function(res) {
-				if (res != null) {
-					contents.push(res);
-					console.log(res);
-				}
-			});
-		}
+		// current folder
+		$scope.currentFolder = files.getRootFolder(current_root_folder_id).then(
+			function (res) { $scope.currentFolder = res; },
+			function (err) { console.log(err); }
+		);
 
-		var getCurrentChildrenFiles = function(current_folder_id) {
-			files.getChildrenFiles(current_folder_id).success(function(res) {
-				if (res != null) {
-					contents.push(res);
-					console.log(res);
-				}
-			});
-		}
+		// contents of the current folder
+		$scope.contents = files.getChildren(current_root_folder_id).then(
+			function (res) { $scope.contents = res; },
+			function (err) { console.log(err); }
+		);
 
-		var getFolderInfo = function(){
-			files.getCurrentFolder(current_root_folder_id).success(function(res) {
-				$scope.pagination = [res]
-			}).error(function(error) {
-				console.log(error);
-			});
-		}
-
-		getFolderInfo();
-		getCurrentChildrenFolders(current_root_folder_id);
-		getCurrentChildrenFiles(current_root_folder_id);
-
-		$scope.contents = contents;
-		console.log(contents);
-		console.log($scope.contents);
+		$scope.pagination = [$scope.currentFolder];
 
 		$scope.gridHeader = [
 			{ name: 'Nome', icon: 'sort_by_alpha', col: 5 },
@@ -45,9 +24,27 @@
 			{ name: 'Tamanho', icon: 'insert_drive_file', col: 2 }
 		];
 
-		$scope.setCurrentFolder = function (index) {
-			files.setCurrentFolder($scope.pagination[index]);
-			$scope.pagination.splice(index + 1, $scope.pagination.length - index + 1);
+		$scope.setCurrentFolderId = function (item) {
+			current_root_folder_id = item.id;
+		};
+
+		$scope.setCurrentFolder = function (item) {
+			$scope.currentFolder = files.getRootFolder(current_root_folder_id).then(
+				function (res) { $scope.currentFolder = res; },
+				function (err) { console.log(err); }
+			);
+
+			$scope.contents = files.getChildren(current_root_folder_id).then(
+				function (res) { $scope.contents = res; },
+				function (err) { console.log(err); }
+			);
+
+			var index = $scope.pagination.indexOf(item);
+
+			if (!index)
+				$scope.pagination.splice(index + 1, $scope.pagination.length - index + 1);
+			else
+				$scope.pagination.push(item);
 		};
 
 		$scope.fileAction = function (item) {
@@ -55,16 +52,21 @@
 				// do something
 				return;
 			} else {
-				files.setCurrentFolder(item);
-				$scope.pagination.push(item);
+				// sets the new ID
+				$scope.setCurrentFolderId(item);
+
+				// delays the call for 1000ms, so it is processed after we set the
+				// currentFolderId.
+				$timeout(function () {
+					// sets the current folder and contents
+					$scope.setCurrentFolder(item);
+				}, 1000);
 			}
 		};
 
 		$scope.getIcon = function (item) {
-			if (item.type === 'file')
-				return 'insert_drive_file';
-			else
-				return 'folder';
+			if (item.type === 'file') return 'insert_drive_file';
+			else return 'folder';
 		};
 
 		$scope.showArrow = function (index) {

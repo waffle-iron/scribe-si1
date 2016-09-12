@@ -14,7 +14,7 @@
 
 		<!-- nome de usuário -->
 		<span class="profile-username">
-			{{ user.name }}
+			{{ user.first_name + user.last_name }}
 
 			<!-- link para expandir o menu azul e mostrar mais funções -->
 			<a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
@@ -23,7 +23,7 @@
 		<br />
 
 		<!-- tipo de conta -->
-		<span class="profile-accounttype">{{ getAccountType() }}</span>
+		<span class="profile-accounttype">{{ userData.username }}</span>
 	</div>
 
 	<!-- opções do menu lateral -->

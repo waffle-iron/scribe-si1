@@ -3,18 +3,14 @@
 	.controller('profilePreviewController', function ($scope, $cookies, $http, tabs, user) {
 		var current_user_id = $cookies.getObject('current_user_id')
 
-		var getUserInfo = function(){
-			user.getCurrentUser(current_user_id).success(function(res) {
-				console.log(res);
-				console.log(user.getUserInfo(res));
-				$scope.user = user.getUserInfo(res);
-			}).error(function(error) {
-				console.log(error);
-			});
-		}
-
-		// seta os dados do usuário no $scope
-		getUserInfo();
+		$scope.userData = user.getUserData(current_user_id).then(
+			function (res) {
+				$scope.userData = res;
+			},
+			function (err) {
+				console.log("chicu is gay");
+			}
+		);
 
 		// tabs do menu azul de perfil
 		$scope.options = [
@@ -31,14 +27,6 @@
 		// checa se a tab ativa do menu azul é a mesma do índice passado
 		$scope.checkMenuTab = function (index) {
 			return tabs.menu.get() === index;
-		};
-
-		// seta o tipo de conta do usuário baseado no valor de isPremiumUser
-		$scope.getAccountType = function () {
-			if ($scope.user.premiumUser)
-				return 'Premium User';
-			else
-				return 'Normal User';
 		};
 
 	});
