@@ -25,7 +25,7 @@ class FoldersController < ApplicationController
   end
 
   def find_children
-    @folders = Folder.find_by(parent_folder_id: params[:folder_id])
+    @folders = Folder.where(parent_folder_id: params[:folder_id])
     respond_to do |format|
       format.html
       format.json {
