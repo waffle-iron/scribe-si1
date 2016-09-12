@@ -4,6 +4,28 @@
 		// the user's root folder id, used to make http requests to the server.
 		var current_root_folder_id = $cookies.getObject('current_root_folder_id');
 
+		// sets $scope.contents
+		$scope.getChildren = function (current_root_folder_id) {
+			files.getChildrenFolders(current_root_folder_id).then(
+				function (res) {
+					$scope.contents = res.data;
+					for (var i = 0; i < $scope.contents.length; i++)
+						$scope.contents.type = 'folder';
+
+					files.getChildrenFiles(current_root_folder_id).then {
+						function (res) {
+							var contents = res.data;
+							for (var i = 0; i < contents.length; i++)
+								contents.type = 'file';
+							$scope.contents.concat(contents);
+						},
+						function (err) { console.log(err); }
+					};
+				},
+				function (err) { console.log(err); }
+			);
+		};
+
 		// options that will be rendered on the table's header.
 		$scope.gridHeader = [
 			{ name: 'Nome', icon: 'sort_by_alpha', col: 5 },
@@ -27,10 +49,7 @@
 					function (err) { console.log(err); }
 				);
 
-				$scope.contents = files.getChildren(current_root_folder_id).then(
-					function (res) { $scope.contents = res.data; },
-					function (err) { console.log(err); }
-				);
+				$scope.getChildren(current_root_folder_id);
 
 				var index = $scope.pagination.indexOf(item);
 
@@ -78,10 +97,7 @@
 				$scope.currentFolder = res.data;
 				$scope.pagination.push($scope.currentFolder);
 
-				files.getChildren(current_root_folder_id).then(
-					function (res) { $scope.contents = res.data; },
-					function (err) { console.log(err); }
-				);
+				$scope.getChildren(current_root_folder_id);
 			},
 			function (err) { console.log(err); }
 		);
