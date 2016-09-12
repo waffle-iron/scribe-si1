@@ -50,8 +50,9 @@
 			console.log("Criando arquivo de nome " + fileName + " dentro da pasta " + $scope.getCurrentFolder().name);
 		};
 
-		$scope.shareFile = function (email) {
-			console.log("Compartilhando com " + email);
+		$scope.shareFile = function (shareObject) {
+			console.log(shareObject.permission);
+			console.log("Compartilhando com " + shareObject.email + " com permissão para edição " + shareObject.permission);
 		};
 
 		$scope.createFolderDialog = function(ev) {
@@ -89,49 +90,46 @@
 	};
 
 	$scope.shareFileDialog = function(ev) {
-		var confirm = $mdDialog.prompt()
-			.title('Compartilhar arquivo')
-			.textContent('Digite o e-mail da pessoa com quem deseja compartilhar')
-			.placeholder('E-mail')
-			.ariaLabel('E-mail')
-			.targetEvent(ev)
-			.ok('Compartilhar')
-			.cancel('Cancelar');
-
-		$mdDialog.show(confirm).then(function(result) {
-			$scope.shareFile(result);
-		}, function() {
+		$mdDialog.show({
+			controller: DialogController,
+			templateUrl: '../directives/shareDialog.html',
+			parent: angular.element(document.body),
+			targetEvent: ev,
+			clickOutsideToClose:true,
+		})
+		.then(function(answer) {
+      $scope.shareFile(answer);
+    }, function() {
 			console.log("Não compartilhou arquivo");
-		});
+    });
 	};
 
-/* CUSTOM DIALOG
-
-	$scope.createFileDialog = function(ev) {
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: '../directives/shareDialog.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:false	,
-    })
-    .then(function(answer) {
-      $scope.createFile(answer);
-    }, function() {
-			console.log("Não criou arquivo dentro da pasta " + $scope.getCurrentFolder().name);
-    });
-  };*/
 
 	});
 })();
 
 function DialogController($scope, $mdDialog) {
 
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
+		$scope.checked = false;
 
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
+		$scope.validateFields = function() {
+			return $("#friend-email").val() === "";
+		};
+
+		$scope.clickCheckBox = function() {
+			$scope.checked = !$scope.checked;
+		};
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function() {
+			var answer = { email: $('#friend-email').val(), permission: $scope.checked };
+      $mdDialog.hide(answer);
+    };
 }
