@@ -25,5 +25,9 @@
 			return tabs.menu.get() === index;
 		};
 
+		$scope.getFullName = function () {
+			return userData.first_name + " " + userData.last_name;
+		};
+
 	});
 })();
