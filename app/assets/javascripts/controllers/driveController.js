@@ -1,6 +1,6 @@
 (function () {
 	angular.module('ScribeApp')
-	.controller('driveController', function ($scope, files, $mdDialog, $mdMedia) {
+	.controller('driveController', function ($scope, files, $mdDialog, $mdMedia, $mdToast) {
 
 		$scope.pagination = [files.getCurrentFolder()];
 
@@ -68,7 +68,12 @@
 	    $mdDialog.show(confirm).then(function(result) {
 				$scope.createFolder(result);
 			}, function() {
-				console.log("Não criou pasta dentro da pasta " + $scope.getCurrentFolder().name);
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent("Não criou nenhuma pasta dentro de " + $scope.getCurrentFolder().name)
+						.position("top right")
+						.hideDelay(3000)
+				);
 	    });
 	  };
 
@@ -85,7 +90,12 @@
 		$mdDialog.show(confirm).then(function(result) {
 			$scope.createFile(result);
 		}, function() {
-			console.log("Não criou arquivo dentro da pasta " + $scope.getCurrentFolder().name);
+			$mdToast.show(
+	      $mdToast.simple()
+	        .textContent('Não criou nenhum arquivo dentro de ' + $scope.getCurrentFolder().name)
+	        .position("top right")
+	        .hideDelay(3000)
+	    );
 		});
 	};
 
@@ -100,7 +110,12 @@
 		.then(function(answer) {
       $scope.shareFile(answer);
     }, function() {
-			console.log("Não compartilhou arquivo");
+			$mdToast.show(
+				$mdToast.simple()
+					.textContent('Nenhum arquivo foi compartilhado')
+					.position("top right")
+					.hideDelay(3000)
+			);
     });
 	};
 
