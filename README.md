@@ -1,24 +1,47 @@
-# README
+## Scribe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+```sh
+  Scribe é um gerenciador de arquivos que permite ao usuário criação e edição de arquivos do formato .txt e .md. 
+  O Scribe conta com uma interface Material Design, o que proporciona ao usuário um ambiente confortável e bonito.
+```
 
-* Ruby version
+## Installation
 
-* System dependencies
+* install railsinstaller (version 5.0+) 
 
-* Configuration
+* clone repository
 
-* Database creation
+* navigate to project directory
 
-* Database initialization
+* start application
+```sh
+rails s
+```
 
-* How to run the test suite
+* in browser, access
+```sh
+localhost:3000
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Heroku
 
-* Deployment instructions
+* Scribe can be found in Heroku, also visit 
 
-* ...
+```sh
+scribe-ufcg.herokuapp.com
+```
+## Meta
+
+Gabriel Guimarães
+
+Gabriel Cintra
+
+Francisco Edeverton
+
+Marcelo Perrella
+
+Kelvin Cirne
+
+Antonio Rafael (has left the group)
