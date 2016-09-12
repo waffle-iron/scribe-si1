@@ -6,11 +6,15 @@ default: &default
 
 # charcoal
 development:
-  <<: *default
-  host: localhost
-  database: <%= ENV['SCRIBE_LOCAL_DATABASE'] %>
-  username: <%= ENV['SCRIBE_LOCAL_USERNAME'] %>
-  password: <%= ENV['SCRIBE_LOCAL_PASSWORD'] %>
+  #<<: *default
+  #host: localhost
+  #database: <%= ENV['SCRIBE_LOCAL_DATABASE'] %>
+  #username: <%= ENV['SCRIBE_LOCAL_USERNAME'] %>
+  #password: <%= ENV['SCRIBE_LOCAL_PASSWORD'] %>
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+  database: db/development.sqlite3
 
 production:
   <<: *default

@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :documents
   resources :folders, :path => 'my-drive'
 
-  get 'document/new' => 'documents#create'
-  get 'folder/new' => 'folders#create'
+  get 'documents/children/:folder_id' => 'documents#find_children'
+  get 'folders/children/:folder_id' => 'folders#find_children'
 
 #  scope '/api' do
 #    scope '/documents' do

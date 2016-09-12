@@ -5,7 +5,7 @@ module AuthHelper
   end
 
   def destroy_session
-    puts 'destroying session'
+    puts 'Destroying current session...'
     session[:current_user_id] = nil
     redirect_to :controller => 'auth', :action => 'login'
   end

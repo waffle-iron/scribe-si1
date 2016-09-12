@@ -17,7 +17,8 @@
         console.log(res);
 
         if (res.data.success) {
-          $cookies.put("current_user_id", res.data.current_user_id)
+          $cookies.put("current_user_id", res.data.current_user_id);
+          $cookies.put("current_root_folder_id", res.data.current_root_folder_id);
           httpToolsService.redirect('/my-drive');
         } else {
           var notification = document.querySelector('.mdl-js-snackbar');
@@ -48,7 +49,7 @@
           httpToolsService.redirect('/login');
         } else {
           var notification = document.querySelector('.mdl-js-snackbar');
-          notification.MaterialSnackbar.showSnackbar({ message: res.data.msg });  
+          notification.MaterialSnackbar.showSnackbar({ message: res.data.msg });
         }
       }, function error(error) {
         console.log(error);

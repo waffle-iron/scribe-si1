@@ -1,5 +1,4 @@
 class AuthController < ApplicationController
-  include AuthHelper
   require 'json'
   before_action :is_logged_in?, only:[:login]
   layout 'api', only: [:authenticate]
@@ -23,10 +22,13 @@ class AuthController < ApplicationController
       if @user && @user.authenticate(password)
         puts 'Valid password, creating session...'
         new_session(@user)
+        current_root_folder = Folder.find_by(name: DEFAULT_FOLDER_NAME, user_id: @user.id)
+
         render status: 200,
                json: {
                   success: true,
                   current_user_id: @user.id,
+                  current_root_folder_id: current_root_folder.id,
                   info: "Authenticated"
                }
       else

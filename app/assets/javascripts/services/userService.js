@@ -1,7 +1,5 @@
 (function () {
 	angular.module('ScribeApp').factory('user', function ($http, $cookies) {
-		var current_user_id = $cookies.getObject('current_user_id');
-		var username;
 		var service = {};
 
 		service.getCurrentUser = function(current_user_id){
@@ -12,7 +10,7 @@
 			var user = {};
 			user.name = service.getUsername(data);
 			user.avatarPath = 'imgs/chico.jpg'
-			user.premiumUser = false;
+			user.premiumUser = true;
 
 			return user;
 		}

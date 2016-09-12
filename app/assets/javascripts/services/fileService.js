@@ -1,75 +1,42 @@
 (function () {
-	angular.module('ScribeApp').service('files', function () {
+	angular.module('ScribeApp').factory('files', function ($http) {
+		var service = {}
 
-		var root = {
-			name: 'Meu Drive',
-			type: 'folder',
-			update: new Date(),
-			size: '-',
-			owner: 'me',
-			contents: [{
-				name: 'Geografia',
-				type: 'folder',
-				update: new Date(),
-				size: '-',
-				owner: 'me',
-				contents: [{
-					name: 'Provas',
-					type: 'folder',
-					update: new Date(),
-					size: '-',
-					owner: 'me',
-					contents: [{
-						name: 'Primeira Etapa 2015.1',
-						type: 'file',
-						update: new Date(),
-						size: '16 kbs',
-						owner: 'me'
-					}, {
-						name: 'Segunda Etapa 2015.1',
-						type: 'file',
-						update: new Date(),
-						size: '12 kbs',
-						owner: 'me'
-					}, {
-						name: 'Terceira Etapa 2016.1',
-						type: 'file',
-						update: new Date(),
-						size: '22 kbs',
-						owner: 'me'
-					}]
-				}, {
-					name: 'Listas de Exercícios',
-					type: 'folder',
-					update: new Date(),
-					size: '-',
-					owner: 'me',
-					contents: [{
-						name: 'Topografia',
-						type: 'file',
-						update: new Date(),
-						size: '8 kbs',
-						owner: 'me'
-					}]
-				}]
-			}]
-		};
+		service.getChildrenFolders = function(current_folder_id) {
+			return $http.get('folders/children/' + current_folder_id + '.json');
+		}
 
-		var currentFolder = root;
+		service.getChildrenFiles = function(current_folder_id) {
+			return $http.get('documents/children/' + current_folder_id + '.json');
+		}
 
-		return {
-			getFiles: function () {
-				return root;
-			},
+		service.getCurrentFolder = function(current_folder_id) {
+			return $http.get('my-drive/' + current_folder_id + '.json');
+		}
 
-			getCurrentFolder: function () {
-				return currentFolder;
-			},
+		service.getFolderInfo = function(data) {
+			var folder = {};
+			folder.name = service.getFolderName(data);
+			folder.type = 'folder';
+			folder.owner = 'me';
+			folder.update = service.getFolderUpdate(data);
+			folder.size = '-'
 
-			setCurrentFolder: function (folder) {
-				currentFolder = folder;
-			}
-		};
+			return folder;
+		}
 
+		service.getFolderName = function(data) {
+			return data.name;
+		}
+
+		service.getFolderUpdate = function(data) {
+			return data.updated_at;
+		}
+
+		service.setCurrentFolder = function(folder) {
+			currentFolder = folder;
+		}
+
+		return service;
 	});
 })();

@@ -1,6 +1,6 @@
 <div id="pagination">
 	<span class="pagination-item" ng-repeat="item in pagination">
-		<a href="#" ng-click="setCurrentFolder($index)">
+		<a ng-click="setCurrentFolder($index)">
 			{{ item.name }}
 			<i class="material-icons" ng-show="showArrow($index)">keyboard_arrow_down</i>
 		</a>
@@ -21,7 +21,7 @@
 	</span>
 
 	<!-- lista de arquivos dentro da pasta atual sendo visitada -->
-	<span class="mdl-grid drive-item" ng-repeat="item in getCurrentFolder().contents track by $index">
+	<span class="mdl-grid drive-item" ng-repeat="item in contents">
 		<span class="mdl-cell mdl-cell--5-col" ng-click="fileAction(item)">
 			<i class="material-icons">{{ getIcon(item) }}</i>
 			{{ item.name }}

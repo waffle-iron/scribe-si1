@@ -1,10 +1,24 @@
 class DocumentsController < ApplicationController
   require 'json'
 
-  layout 'api', only: [:index]
-
   def index
     @documents = Document.all
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => @documents.to_json
+      }
+    end
+  end
+
+  def find_children
+    @documents = Document.find_by(folder_id: params[:folder_id])
+    
+    respond_to do |format|
+      format.json {
+        render :json => @documents.to_json
+      }
+    end
   end
 
   def new
