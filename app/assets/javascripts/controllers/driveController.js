@@ -10,17 +10,18 @@
 				function (res) {
 					$scope.contents = res.data;
 					for (var i = 0; i < $scope.contents.length; i++)
-						$scope.contents.type = 'folder';
+						$scope.contents[i].type = 'folder';
 
-					files.getChildrenFiles(current_root_folder_id).then {
+					files.getChildrenFiles(current_root_folder_id).then(
 						function (res) {
 							var contents = res.data;
 							for (var i = 0; i < contents.length; i++)
-								contents.type = 'file';
-							$scope.contents.concat(contents);
+								contents[i].type = 'file';
+							$scope.contents = $scope.contents.concat(contents);
+							console.log($scope.contents);
 						},
 						function (err) { console.log(err); }
-					};
+					);
 				},
 				function (err) { console.log(err); }
 			);
@@ -68,9 +69,6 @@
 			} else {
 				// sets the current folder and contents
 				$scope.setCurrentFolder(item);
-
-				// refresh the page with the changes
-				$scope.$apply();
 			}
 		};
 
