@@ -12,15 +12,11 @@ class DocumentsController < ApplicationController
   end
 
   def find_children
-    documents = Document.where(folder_id: params[:folder_id])
-
-    documents.each do |document|
-      document.attributes = {type: 'file'}
-    end
+    @documents = Document.where(folder_id: params[:folder_id])
 
     respond_to do |format|
       format.json {
-        render :json => documents.to_json
+        render :json => @documents.to_json
       }
     end
   end
