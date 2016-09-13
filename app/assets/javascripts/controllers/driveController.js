@@ -176,7 +176,7 @@
 							user_id: item.user_id
 						}
 					};
-					route = '/documents'
+					route = '/documents/' + item.id
 				} else {
 					config = {
 						authenticity_token: token,
@@ -186,10 +186,10 @@
 							user_id: item.user_id
 						}
 					};
-					route = '/my-drive'
+					route = '/my-drive/' + item.id
 				}
 
-				httpToolsService.request('POST', route , config).then(
+				httpToolsService.request('PUT', route , config).then(
 					function (res) {
 			 			if (res.data.success){
 							$timeout(function () {
