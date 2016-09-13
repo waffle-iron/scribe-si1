@@ -1,5 +1,5 @@
 (function () {
-	angular.module('ScribeApp').controller('editorController', function ($scope, $cookies, httpToolsService) {
+	angular.module('ScribeApp').controller('editorController', function ($scope, $cookies, httpToolsService, $timeout) {
 
 		$scope.document_id = $cookies.getObject('current_document');
 
