@@ -1,6 +1,6 @@
 (function () {
 	angular.module('ScribeApp')
-	.controller('profilePreviewController', function ($scope, $cookies, $http, tabs, user) {
+	.controller('profilePreviewController', function ($scope, $cookies, $http, tabs, user, httpToolsService) {
 		var current_user_id = $cookies.getObject('current_user_id')
 
 		$scope.userData = user.getUserData(current_user_id).then(
@@ -10,13 +10,20 @@
 
 		// tabs do menu azul de perfil
 		$scope.options = [
-			{ name: 'Menu Principal',	icon: 'reorder', href: '' },
-			{ name: 'Mensagens',		icon: 'email', href: '' },
-			{ name: 'Logout',			icon: 'exit_to_app', href: '/logout' }
+			{ name: 'Menu Principal',	icon: 'reorder' },
+			{ name: 'Mensagens',		icon: 'email' },
+			{ name: 'Logout',			icon: 'exit_to_app' }
 		];
+
+		$scope.logout = function() {
+			httpToolsService.redirect('/logout');
+		};
 
 		// seta o index da tab do menu azul
 		$scope.setMenuTab = function (index) {
+			if (index === $scope.options.length - 1) {
+				$scope.logout();
+			}
 			tabs.menu.set(index);
 		};
 

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get 'documents/children/:folder_id' => 'documents#find_children'
   get 'folders/children/:folder_id' => 'folders#find_children'
 
+  resources :notifications
+  resources :policies
+
 #  scope '/api' do
 #    scope '/documents' do
 #      get '/all' => 'documents#index'

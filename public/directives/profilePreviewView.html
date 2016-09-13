@@ -17,7 +17,7 @@
 			{{ getFullName() }}
 
 			<!-- link para expandir o menu azul e mostrar mais funções -->
-			<a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
+			<!-- <a href="#"><i class="material-icons">keyboard_arrow_down</i></a> -->
 		</span>
 
 		<br />
@@ -29,9 +29,9 @@
 	<!-- opções do menu lateral -->
 	<div class="profile-tabs">
 		<span ng-repeat="option in options">
-			<a href="{{ option.href }}" class="profile-tabs-option" ng-class="{active : checkMenuTab ($index)}" ng-click="setMenuTab($index)">
+			<span class="profile-tabs-option" ng-class="{active : checkMenuTab ($index)}" ng-click="setMenuTab($index)">
 				<i class="material-icons">{{ option.icon }}</i>
-			</a>
+			</span>
 		</span>
 	</div>
 

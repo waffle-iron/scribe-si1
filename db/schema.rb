@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824034325) do
+ActiveRecord::Schema.define(version: 20160913165502) do
 
   create_table "documents", force: :cascade do |t|
     t.integer  "folder_id"
@@ -35,8 +35,23 @@ ActiveRecord::Schema.define(version: 20160824034325) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.string   "message"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["from_user_id"], name: "index_notifications_on_from_user_id"
+    t.index ["to_user_id"], name: "index_notifications_on_to_user_id"
+  end
+
+  create_table "policies", force: :cascade do |t|
+    t.integer  "document_id"
+    t.integer  "user_id"
+    t.string   "permission"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["document_id"], name: "index_policies_on_document_id"
+    t.index ["user_id"], name: "index_policies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
