@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   require 'json'
+  layout 'editor', only: [:new, :edit]
 
   def index
     @documents = Document.all

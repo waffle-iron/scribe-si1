@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+	    <meta charset="UTF-8">
+	    <title>Scribe - Editor</title>
+	    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  	</head>
+  	<body>
+    	<!-- Sempre mostra um header, mesmo em telas pequenas -->
+    	<div class="mdl-layout mdl-js-layout">
+        <header id="header" class="mdl-layout__header mdl-layout__header--scroll">
+        	<!-- Botão = -->
+        	<div class="mdl-layout__header-row">
+          	<!-- Local do arquivo -->
+          	<div id="pagination">
+  	        	<!-- <span class="pagination-item">Meu Drive<i class="material-icons">keyboard_arrow_right</i></span>
+  	        	<span class="pagination-item">Pasta<i class="material-icons">keyboard_arrow_right</i></span> -->
+  	        	<span class="pagination-item pagination-root">
+  	            	<div class="mdl-textfield mdl-js-textfield">
+  	            		<!-- Nome do arquivo no input em >< -->
+  						      <input class="mdl-textfield__input" type="text" placeholder="Nome do arquivo"></input>
+  					      </div>
+  	        	</span>
+	      	  </div>
+            <!-- Espaçamento para a direita -->
+           	<div class="mdl-layout-spacer"></div>
+        		<!-- Navegação superior. Escondemos isso em telas menores -->
+        		<div class="mdl-navigation mdl-layout--large-screen-only">
+          		<main class="mdl-layout__content">
+      					<button class="mdl-button mdl-button--raised" style="color: #fafafa">TXT</button>
+      					<button class="mdl-button mdl-button--raised" style="color: #fafafa">MD</button>
+    				  </main>
+        		</div>
+        </header>
+        	<!-- Menu do botão de opções lateral -->
+        	<div class="mdl-layout__drawer">
+          	<span class="mdl-layout-title">Opções</span>
+          	<nav class="mdl-navigation">
+            		<a class="mdl-navigation__link" href="">Opção 1</a>
+            		<a class="mdl-navigation__link" href="">Opção 2</a>
+            		<a class="mdl-navigation__link" href="">Opção 3</a>
+            		<a class="mdl-navigation__link" href="">Opção 4</a>
+          	</nav>
+        	</div>
+        	<!-- Corpo da página -->
+    	    <%= yield %>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src='../tinymce/tinymce.min.js'></script>
+    <script src="../editor.js"></script>
+  </body>
+</html>

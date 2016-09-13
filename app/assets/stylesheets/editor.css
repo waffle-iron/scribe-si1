@@ -1,0 +1,54 @@
+body {
+  background-color: #eeeeee;
+}
+
+#header {
+  background-color: #262b36;
+  color: #bdc3d1;
+  height: 64px;
+}
+
+#header .material-icons {
+  color: #bdc3d1;
+}
+
+.mdl-grid {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: 50%;
+}
+
+.mdl-blank-page {
+  margin-top: 30px;
+}
+
+.mdl-text__area {
+  padding-right: 10%;
+  padding-left: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  min-height: 900px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.mdl-button__footer {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+}
+
+#pagination {
+  margin-left: 30px;
+  margin-right: 30px;
+  color: white;
+}
+
+#pagination i {
+  font-size: 18px;
+  vertical-align: -25%;
+}
+
+#pagination .pagination-item {
+  padding: 5px 8px;
+}
