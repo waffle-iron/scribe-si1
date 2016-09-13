@@ -1,0 +1,17 @@
+.message {
+    display: block;
+    background-color: white;
+    padding: 10px;
+
+    &:nth-child(even) { background-color: #f1f1f1; }
+
+    > .message-header {
+        .sender, .date {
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .sender { float: left; }
+        .date { float: right }
+    }
+}
