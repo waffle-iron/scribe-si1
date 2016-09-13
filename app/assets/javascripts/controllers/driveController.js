@@ -66,7 +66,7 @@
 		// action() when a file or folder is clicked on the list.
 		$scope.fileAction = function (item) {
 			if (item.type === 'file') {
-				httpToolsService.redirect('/documents/' + item.id);
+				httpToolsService.redirect('/documents/' + item.id + '/edit/');
 				return;
 			} else {
 				// sets the current folder and contents
