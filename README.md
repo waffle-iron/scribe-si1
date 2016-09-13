@@ -15,6 +15,11 @@
 
 * navigate to project directory
 
+* in console
+```sh
+rake db:migrate
+```
+
 * start application
 ```sh
 rails s
