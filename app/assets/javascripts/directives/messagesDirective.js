@@ -1,5 +1,5 @@
 (function () {
-	angular.module('ScribeApp').directive('mainMenu', function () {
+	angular.module('ScribeApp').directive('messages', function () {
 
 		return {
 			restrict: 'E',
