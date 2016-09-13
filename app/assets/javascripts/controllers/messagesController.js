@@ -1,5 +1,5 @@
 (function () {
-	angular.module('ScribeApp').controller('messagesController', function ($scope) {
+	angular.module('ScribeApp').controller('messagesController', function ($scope, httpToolsService) {
 
 		$scope.messages = [
             {
@@ -24,7 +24,6 @@
             }
         ];
 
-        
 
 	});
 })();

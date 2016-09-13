@@ -10,8 +10,8 @@
 			{ name: 'Permissões', icon: 'info_outline', col: 1 }
 		];
 
-    // $scope.getFiles = function () {
-    //   return share.getFiles();
+    // $scope.getSharedFiles = function () {
+    //    return share.getFiles();
     // };
 
 		$scope.getIcon = function (item) {

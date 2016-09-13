@@ -19,7 +19,7 @@
 	</span>
 
 	<!-- lista de arquivos dentro da pasta atual sendo visitada -->
-	<span class="mdl-grid drive-item" ng-repeat="item in getFiles().contents">
+	<span class="mdl-grid drive-item" ng-repeat="item in getSharedFiles() track by $index">
 		<span class="mdl-cell mdl-cell--5-col">
 			<i class="material-icons">{{ getIcon(item) }}</i>
 			{{ item.name }}

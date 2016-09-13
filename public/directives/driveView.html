@@ -20,17 +20,19 @@
 	</span>
 
 	<!-- lista de arquivos dentro da pasta atual sendo visitada -->
-	<span class="mdl-grid drive-item" ng-repeat="item in contents track by $index">
+	<span class="mdl-grid drive-item" ng-repeat="item in contents track by $index" multiple-selection-item ng-class="{'selecting': isSelecting ,'selected': isSelected}">
 		<span class="mdl-cell mdl-cell--7-col" ng-click="fileAction(item)">
 			<i class="material-icons">{{ getIcon(item) }}</i>
 			{{ item.name }}
 		</span>
 		<span class="mdl-cell mdl-cell--2-col">{{ item.updated_at | date}}</span>
 		<span class="mdl-cell mdl-cell--3-col">
-			<ul class="no-balls">
-				<li ng-click="shareFileDialog($event)" ng-show="item.type === 'file'"><span><i class="material-icons">share</i> COMPARTILHAR</span></li>
-				<li ng-click="renameItemDialog($event, item)" ><span ><i class="material-icons">edit</i> RENOMEAR</span></li>
-			</ul>
+				<span class="action-icon" ng-click="shareFileDialog($event)" ng-show="item.type === 'file'"><i class="material-icons">share</i>
+					<md-tooltip md-direction="left">Compartilhar item</md-tooltip>
+				</span>
+				<span class="action-icon" ng-click="renameItemDialog($event, item)" ><i class="material-icons">edit</i>
+					<md-tooltip md-direction="right">Renomear item</md-tooltip>
+				</span>
 		</span>
 	</span>
 
@@ -39,8 +41,10 @@
 <div class="mdl-button__footer">
 	<button class="mdl-button mdl-button--fab mdl-button--primary mdl-button_ofleft" ng-click="createFileDialog($event)">
   	<i class="material-icons">note_add</i>
+		<md-tooltip md-direction="top">Criar um arquivo</md-tooltip>
   </button>
   <button class="mdl-button mdl-button--fab mdl-button--primary" ng-click="createFolderDialog($event)">
   	<i class="material-icons">create_new_folder</i>
+		<md-tooltip md-direction="top">Criar uma pasta</md-tooltip>
   </button>
 </div>
