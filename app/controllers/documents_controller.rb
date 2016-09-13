@@ -25,6 +25,16 @@ class DocumentsController < ApplicationController
   def new
   end
 
+  def show
+    @document = Document.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => @document.to_json
+      }
+    end
+  end
+
   def create
     @document = Document.new(get_request_params)
 
