@@ -35,7 +35,6 @@ class FoldersController < ApplicationController
 
   def create
     @folder = Folder.new(get_request_params)
-
     if @folder.save
       render status: 201,
              json: {

@@ -174,7 +174,7 @@
 						file: {
 							name: name,
 							extension: item.extension,
-							contents: item.content,
+							content: item.content,
 							folder_id: item.folder_id,
 							user_id: item.user_id
 						}
