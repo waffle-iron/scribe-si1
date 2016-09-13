@@ -23,7 +23,7 @@
         file: {
           name: $scope.document.name,
           extension: $scope.document.extension,
-          content: $('#file-content').text()
+          content: $('#file-content').html()
         }
       };
 

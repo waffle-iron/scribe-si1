@@ -140,7 +140,7 @@
 					file: {
 						name: fileName,
 						extension: '.txt',
-						content: '',
+						content: '<html>Este é seu novo arquivo! <br>Para editá-lo, use o botão direito do mouse ou selecione o texto que deseja alterar :-)</html>',
 						folder_id: $scope.currentFolder.id,
 						user_id: $cookies.getObject('current_user_id')
 					}
