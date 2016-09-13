@@ -1,4 +1,4 @@
-Aos monitores: Por favor, se possível, aceitem nossos commits até às 4:20. Mais tarde justificaremos o atraso mais detalhadamente (tem uma breve justificativa na documentação). Abraços.
+Aos monitores: Por favor, se possível, aceitem nossos commits até às 4:30. Mais tarde justificaremos o atraso mais detalhadamente (tem uma breve justificativa na documentação). Abraços.
 
 ## Scribe
 
