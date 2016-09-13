@@ -14,14 +14,6 @@
 				return $http.get('/documents/children/' + current_root_folder_id + '.json');
 			},
 
-			createFile: function (params) {
-				return $http.post('/documents', params);
-			},
-
-			createFolder: function () {
-
-			}
-
 		};
 
 	});
