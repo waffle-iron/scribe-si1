@@ -7,7 +7,7 @@
 			function (res) {
 				$timeout(function () {
 					$scope.document = res.data;
-				}, 300);
+				}, 10);
 			},
 			function (err) { console.log(err); }
 		);
