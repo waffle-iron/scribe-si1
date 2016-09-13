@@ -10,6 +10,10 @@
 			function (err) { console.log(err); }
 		);
 
+		$scope.changeFileExtension = function (extension) {
+			$scope.document.extension = extension;
+		};
+
 		$scope.saveDocument = function () {
 
       var token = $('meta[name=csrf-token]').attr("content");
