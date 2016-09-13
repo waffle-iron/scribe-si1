@@ -7,6 +7,10 @@
   O Scribe conta com uma interface Material Design, o que proporciona ao usuário um ambiente confortável e bonito.
 ```
 
+## Documentation
+
+Scribe Documentation [here](https://github.com/gabrielguim/scribe-si1/blob/rails/Documento%20de%20projeto%20e%20decis%C3%B5es%20-%20Scribe.pdf)
+
 ## Installation
 
 * install railsinstaller (version 5.0+) 
@@ -14,6 +18,11 @@
 * clone repository
 
 * navigate to project directory
+
+* in console
+```sh
+rake db:migrate
+```
 
 * start application
 ```sh

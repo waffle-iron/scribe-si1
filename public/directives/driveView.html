@@ -1,6 +1,6 @@
 <div id="pagination">
 	<span class="pagination-item" ng-repeat="item in pagination track by $index">
-		<a ng-click="setCurrentFolder(item)">
+		<a ng-click="setPagination($index)">
 			{{ item.name }}
 			<i class="material-icons" ng-if="showArrow($index)">keyboard_arrow_down</i>
 		</a>

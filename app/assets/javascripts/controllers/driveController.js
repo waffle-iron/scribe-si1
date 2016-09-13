@@ -53,19 +53,16 @@
 
 				$scope.getChildren(current_root_folder_id);
 
-				// var index = $scope.pagination.indexOf(item);
-				var index = -1;
-				for (var i = 0; i < $scope.pagination.length; i++) {
-					if (JSON.stringify($scope.pagination[i]) === JSON.stringify(item)) {
-						index = i;
-					}
-				}
-
-				if (!index)
-					$scope.pagination.splice(index + 1, $scope.pagination.length);
-				else
-					$scope.pagination.push(item);
+				$scope.pagination.push(item);
+				
 			}, 100);
+		};
+
+		$scope.setPagination = function (index) {
+			$scope.pagination = $scope.pagination.splice(0, index + 1);
+			$scope.setCurrentFolderId($scope.pagination[index].id);
+			$scope.currentFolder = $scope.pagination[index];
+			$scope.getChildren($scope.currentFolder.id);
 		};
 
 		// action() when a file or folder is clicked on the list.
