@@ -5,7 +5,9 @@
 
     httpToolsService.request('GET', '/documents/' + $scope.document_id + '.json', '').then(
 			function (res) {
-				$scope.document = res.data;
+				$timeout(function () {
+					$scope.document = res.data;
+				}, 50);
 			},
 			function (err) { console.log(err); }
 		);
