@@ -139,7 +139,7 @@
 					authenticity_token: token,
 					file: {
 						name: fileName,
-						extension: '.txt',
+						extension: 'txt',
 						content: 'Este é seu novo arquivo! Para editá-lo, use o botão direito do mouse ou selecione o texto que deseja alterar :-)',
 						folder_id: $scope.currentFolder.id,
 						user_id: $cookies.getObject('current_user_id')
