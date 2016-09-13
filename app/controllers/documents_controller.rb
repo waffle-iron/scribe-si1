@@ -63,6 +63,6 @@ class DocumentsController < ApplicationController
 
   private
   def get_request_params
-    params.permit(:name, :extension, :content, :folder_id, :user_id)
+    params.require(:file).permit(:name, :extension, :content, :folder_id, :user_id)
   end
 end

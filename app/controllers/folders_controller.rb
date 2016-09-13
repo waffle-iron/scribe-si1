@@ -58,6 +58,6 @@ class FoldersController < ApplicationController
 
   private
   def get_request_params
-    params.permit(:name, :parent_folder_id, :user_id)
+    params.require(:folder).permit(:name, :parent_folder_id, :user_id)
   end
 end
