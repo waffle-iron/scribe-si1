@@ -21,14 +21,17 @@
 
 	<!-- lista de arquivos dentro da pasta atual sendo visitada -->
 	<span class="mdl-grid drive-item" ng-repeat="item in contents track by $index">
-		<span class="mdl-cell mdl-cell--5-col" ng-click="fileAction(item)">
+		<span class="mdl-cell mdl-cell--7-col" ng-click="fileAction(item)">
 			<i class="material-icons">{{ getIcon(item) }}</i>
 			{{ item.name }}
 		</span>
-		<span class="mdl-cell mdl-cell--2-col">{{ item.owner }}</span>
-		<span class="mdl-cell mdl-cell--2-col">{{ item.update | date}}</span>
-		<span class="mdl-cell mdl-cell--2-col">{{ item.size }}</span>
-		<span class="mdl-cell mdl-cell--1-col" ng-click="shareFileDialog($event)" ng-show="item.type === 'file'"><i class="material-icons">share</i> COMPARTILHAR</span>
+		<span class="mdl-cell mdl-cell--2-col">{{ item.updated_at | date}}</span>
+		<span class="mdl-cell mdl-cell--3-col">
+			<ul class="no-balls">
+				<li ng-click="shareFileDialog($event)" ng-show="item.type === 'file'"><span><i class="material-icons">share</i> COMPARTILHAR</span></li>
+				<li ng-click="renameItemDialog($event, item)" ><span ><i class="material-icons">edit</i> RENOMEAR</span></li>
+			</ul>
+		</span>
 	</span>
 
 </div>

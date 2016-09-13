@@ -29,11 +29,9 @@
 
 		// options that will be rendered on the table's header.
 		$scope.gridHeaderDrive = [
-			{ name: 'Nome', icon: 'sort_by_alpha', col: 5 },
-			{ name: 'Proprietário', icon: 'person', col: 2 },
+			{ name: 'Nome', icon: 'sort_by_alpha', col: 7 },
 			{ name: 'Última Modificação', icon: 'access_time', col: 2 },
-			{ name: 'Tamanho', icon: 'insert_drive_file', col: 2 },
-			{ name: 'Ação', icon: 'code', col: 1}
+			{ name: 'Ação', icon: 'code', col: 3}
 		];
 
 		// sets the current folder id.
@@ -54,7 +52,7 @@
 				$scope.getChildren(current_root_folder_id);
 
 				$scope.pagination.push(item);
-				
+
 			}, 100);
 		};
 
@@ -68,7 +66,6 @@
 		// action() when a file or folder is clicked on the list.
 		$scope.fileAction = function (item) {
 			if (item.type === 'file') {
-				// do something
 				return;
 			} else {
 				// sets the current folder and contents
@@ -158,8 +155,52 @@
 
 			};
 
+			$scope.renameItem = function(newName, item){
+				var token = $('meta[name=csrf-token]').attr("content");
+				var name = newName;
+				var config;
+				var route;
+
+				if (!newName)
+					name = item.name;
+
+				if (item.type === 'file') {
+					config = {
+						authenticity_token: token,
+						file: {
+							name: name,
+							extension: item.extension,
+							contents: item.content,
+							folder_id: item.folder_id,
+							user_id: item.user_id
+						}
+					};
+					route = '/documents'
+				} else {
+					config = {
+						authenticity_token: token,
+						folder: {
+							name: name,
+							parent_folder_id: item.parent_folder_id,
+							user_id: item.user_id
+						}
+					};
+					route = '/my-drive'
+				}
+
+				httpToolsService.request('POST', route , config).then(
+					function (res) {
+			 			if (res.data.success){
+							$timeout(function () {
+								update($scope.currentFolder);
+							}, 50);
+			 			}
+			 		},
+					function (err) { console.log(err) }
+				);
+			};
+
 			$scope.shareFile = function (shareObject) {
-				console.log(shareObject.permission);
 				console.log("Compartilhando com " + shareObject.email + " com permissão para edição " + shareObject.permission);
 			};
 
@@ -225,6 +266,28 @@
 						.hideDelay(3000)
 				);
 	    });
+		};
+
+		$scope.renameItemDialog = function(ev, item) {
+			var confirm = $mdDialog.prompt()
+				.title('Renomear item')
+				.textContent('Renomear o item ' + item.name)
+				.placeholder('Nome do item')
+				.ariaLabel('Nome do item')
+				.targetEvent(ev)
+				.ok('Renomear')
+				.cancel('Cancelar');
+
+			$mdDialog.show(confirm).then(function(result) {
+				$scope.renameItem(result, item);
+			}, function() {
+				$mdToast.show(
+		      $mdToast.simple()
+		        .textContent('O arquivo ' + item.name + ' não foi renomeado.')
+		        .position("top right")
+		        .hideDelay(3000)
+		    );
+			});
 		};
 
 		var update = function (item){
