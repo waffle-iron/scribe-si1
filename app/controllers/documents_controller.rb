@@ -52,6 +52,22 @@ class DocumentsController < ApplicationController
   end
 
   def update
+    @document = Document.find(params[:id])
+    if @document.update(get_request_params)
+      render status: 200,
+             json: {
+               info: "Document updated",
+               success: true,
+               msg: "Seu documento foi atualizado com sucesso! :)"
+             }
+    else
+      render status: 200,
+             json: {
+               info: "Document not updated",
+               success: false,
+               msg: "Houve algum problema ao atualizar seu documento. Tente novamente. :("
+             }
+    end
   end
 
   def valid_extension?(extension)

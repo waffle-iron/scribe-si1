@@ -8,7 +8,6 @@ class FoldersController < ApplicationController
   end
 
   def index
-    @folder = my_drive
   end
 
   def new
@@ -51,6 +50,22 @@ class FoldersController < ApplicationController
   end
 
   def update
+    @folder = Folder.find(params[:id])
+    if @folder.update(get_request_params)
+      render status: 200,
+             json: {
+               info: "Folder updated",
+               success: true,
+               msg: "Sua pasta foi atualizada com sucesso! :)"
+             }
+    else
+      render status: 200,
+             json: {
+               info: "Folder not updated",
+               success: false,
+               msg: "Houve algum problema ao atualizar sua pasta. Tente novamente. :("
+             }
+    end
   end
 
   def delete
