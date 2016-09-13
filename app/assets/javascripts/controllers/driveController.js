@@ -61,7 +61,7 @@
 			$scope.pagination = $scope.pagination.splice(0, index + 1);
 			$scope.setCurrentFolderId($scope.pagination[index].id);
 			$scope.currentFolder = $scope.pagination[index];
-			$scope.getChildren();
+			$scope.getChildren(current_root_folder_id);
 		};
 
 		// action() when a file or folder is clicked on the list.
