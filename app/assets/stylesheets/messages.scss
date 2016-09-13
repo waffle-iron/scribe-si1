@@ -9,9 +9,15 @@
         .sender, .date {
             text-transform: uppercase;
             font-size: 0.9em;
+            color: rgb(115,115,115);
         }
 
         .sender { float: left; }
         .date { float: right }
+    }
+
+    > .message-body {
+        margin-top: 25px;
+        color: gray;
     }
 }
