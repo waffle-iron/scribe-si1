@@ -27,6 +27,7 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+
     respond_to do |format|
       format.html
       format.json {
@@ -37,6 +38,8 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(get_request_params)
+    content = params[:file][:content]
+    @document.content = content.html_safe
 
     if @document.save
       render status: 201,
@@ -63,6 +66,9 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find(params[:id])
+    content = params[:file][:content]
+    @document.content = content.html_safe
+
     if @document.update(get_request_params)
       render status: 200,
              json: {

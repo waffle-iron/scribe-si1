@@ -1,12 +1,15 @@
 <div class="mdl-grid">
     <div class="mdl-color--white mdl-shadow--4dp mdl-blank-page">
-        <div class="mdl-editor mdl-text__area" id='file-content'>{{document.content}}</div>
+        <div ng-bind-html='fileContent' class="mdl-editor mdl-text__area" id='file-content'>
+          {{document.content}}
+        </div>
     </div>
 </div>
 </div>
 <!-- Botão de Salvar -->
 <div class="mdl-button__footer">
 <button href="" class="mdl-button mdl-button--fab mdl-button--primary mdl-button_ofleft" ng-click="saveDocument()">
+  <md-tooltip md-direction="left">Salvar arquivo</md-tooltip>
   <i class="material-icons">save</i>
 </button>
 </div>

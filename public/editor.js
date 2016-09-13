@@ -11,6 +11,6 @@ tinymce.init({
   insert_toolbar: 'quickimage quicktable',
   selection_toolbar: 'bold italic styleselect | quicklink blockquote | alignleft aligncenter alignright alignjustify',
   content_css: [
-    '//www.tinymce.com/css/codepen.min.css'
+    '/stylesheets/codepen.min.css',
   ]
 });

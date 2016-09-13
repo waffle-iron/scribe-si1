@@ -6,6 +6,7 @@
 	    <title>Scribe - Editor</title>
 	    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
 	    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
       <link rel="stylesheet" href="/editor.css" />
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   	</head>
@@ -17,12 +18,11 @@
         	<div class="mdl-layout__header-row">
           	<!-- Local do arquivo -->
           	<div>
-  	        	<!-- <span class="pagination-item">Meu Drive<i class="material-icons">keyboard_arrow_right</i></span>
-  	        	<span class="pagination-item">Pasta<i class="material-icons">keyboard_arrow_right</i></span> -->
+  	        	<span class="pagination-item">Nome do documento:</span>
   	        	<span class="pagination-item pagination-root">
   	            	<div class="mdl-textfield mdl-js-textfield">
   	            		<!-- Nome do arquivo no input em >< -->
-  						      <input class="mdl-textfield__input" type="text" placeholder="Nome do arquivo" ng-model='document.name'></input>
+  						      <input class="mdl-textfield__input" type="text" placeholder="Documento sem título" value="{{ document.name }}">
   					      </div>
   	        	</span>
 	      	  </div>
@@ -30,9 +30,10 @@
            	<div class="mdl-layout-spacer"></div>
         		<!-- Navegação superior. Escondemos isso em telas menores -->
         		<div class="mdl-navigation mdl-layout--large-screen-only">
+              <span class="pagination-item">Extensão:</span>
           		<main class="mdl-layout__content">
-      					<button class="mdl-button mdl-button--raised" ng-click="changeFileExtension('txt')" style="color: #fafafa">TXT</button>
-      					<button class="mdl-button mdl-button--raised" ng-click="changeFileExtension('md')" style="color: #fafafa">MD</button>
+      					<button class="mdl-button mdl-button--raised"  ng-class="document.extension === 'txt' ? 'active' : ''" ng-click="changeFileExtension('txt')" style="color: #fafafa">TXT</button>
+      					<button class="mdl-button mdl-button--raised" ng-class="document.extension === 'md' ? 'active' : ''" ng-click="changeFileExtension('md')" style="color: #fafafa">MD</button>
     				  </main>
         		</div>
         </header>
@@ -40,10 +41,7 @@
         	<div class="mdl-layout__drawer">
           	<span class="mdl-layout-title">Opções</span>
           	<nav class="mdl-navigation">
-            		<a class="mdl-navigation__link" href="">Opção 1</a>
-            		<a class="mdl-navigation__link" href="">Opção 2</a>
-            		<a class="mdl-navigation__link" href="">Opção 3</a>
-            		<a class="mdl-navigation__link" href="">Opção 4</a>
+            		<a class="mdl-navigation__link" ng-click="returnToDrive()">Sair</a>
           	</nav>
         	</div>
         	<!-- Corpo da página -->
