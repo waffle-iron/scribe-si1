@@ -22,6 +22,25 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def find_shared
+    user_id = params[:user_id]
+    @policies = Policy.where(user_id: user_id)
+    shared_documents = []
+
+    @policies.each do |policy|
+      document = Document.find(policy.document_id)
+      document.owner = document.user.first_name + ' ' + document.user.last_name
+      document.permission = policy.permission
+      shared_documents.push(document)
+    end
+
+    respond_to do |format|
+      format.json {
+        render :json => shared_documents.to_json(:methods => [:owner, :permission])
+      }
+    end
+  end
+
   def show
     @document = Document.find(params[:id])
     respond_to do |format|

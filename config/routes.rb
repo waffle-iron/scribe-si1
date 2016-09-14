@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :folders, :path => 'my-drive'
 
   get 'documents/children/:folder_id' => 'documents#find_children'
+  get 'documents/shared/:user_id' => 'documents#find_shared'
   get 'folders/children/:folder_id' => 'folders#find_children'
 
   resources :notifications

@@ -2,7 +2,12 @@ class PoliciesController < ApplicationController
   protect_from_forgery except: :create
 
   def create
-    @policy = Policy.new(get_request_params)
+    policy = params.require(:policy)
+    user_id = User.find_by(email: policy[:user_email]).id;
+    document_id = policy[:document_id]
+    permission = policy[:permission]
+
+    @policy = Policy.create(user_id: user_id, document_id: document_id, permission: permission)
 
     if @policy.save
       render status: 201,
@@ -25,10 +30,5 @@ class PoliciesController < ApplicationController
   end
 
   def destroy
-  end
-
-  private
-  def get_request_params
-    params.require(:policy).permit(:document_id, :user_id, :permission)
   end
 end

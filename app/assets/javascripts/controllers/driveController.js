@@ -1,6 +1,6 @@
 (function () {
 	angular.module('ScribeApp')
-	.controller('driveController', function ($scope, $cookies, $timeout, files, $mdDialog, $mdToast, httpToolsService) {
+	.controller('driveController', function ($scope, $cookies, $timeout, files, $mdDialog, $mdToast, user, httpToolsService) {
 		// the user's root folder id, used to make http requests to the server.
 		var current_root_folder_id = $cookies.getObject('current_root_folder_id');
 
@@ -31,9 +31,9 @@
 
 		// options that will be rendered on the table's header.
 		$scope.gridHeaderDrive = [
-			{ name: 'Nome', icon: 'sort_by_alpha', col: 7 },
-			{ name: 'Última Modificação', icon: 'access_time', col: 2 },
-			{ name: 'Ação', icon: 'code', col: 3}
+			{ name: 'Nome', icon: 'sort_by_alpha', col: 5 },
+			{ name: 'Última Modificação', icon: 'access_time', col: 5 },
+			{ name: 'Ação', icon: 'code', col: 2}
 		];
 
 		// sets the current folder id.
@@ -106,7 +106,6 @@
 		);
 
 			$scope.createFolder = function (folderName) {
-
 				var token = $('meta[name=csrf-token]').attr("content");
 
 				var config = {
@@ -132,7 +131,6 @@
 			};
 
 			$scope.createFile = function (fileName) {
-
 				var token = $('meta[name=csrf-token]').attr("content");
 
 				var config = {
@@ -204,8 +202,26 @@
 				);
 			};
 
-			$scope.shareFile = function (shareObject) {
-				console.log("Compartilhando com " + shareObject.email + " com permissão para edição " + shareObject.permission);
+			$scope.shareFile = function (shareObject, item) {
+				var token = $('meta[name=csrf-token]').attr("content");
+				console.log(shareObject);
+
+				var request_body = {
+					authenticity_token: token,
+					policy: {
+						user_email: shareObject.email,
+						document_id: item.id,
+						permission: shareObject.permission
+					}
+				}
+
+				httpToolsService.request('POST', '/policies', request_body).then(
+					function(res) {
+						console.log(res);
+					}, function(err) {
+						console.log(err);
+					}
+				);
 			};
 
 			$scope.createFolderDialog = function(ev) {
@@ -252,7 +268,7 @@
 			});
 		};
 
-		$scope.shareFileDialog = function(ev) {
+		$scope.shareFileDialog = function(ev, item) {
 			$mdDialog.show({
 				controller: DialogController,
 				templateUrl: '../directives/shareDialog.html',
@@ -261,7 +277,7 @@
 				clickOutsideToClose:false,
 			})
 			.then(function(answer) {
-	      $scope.shareFile(answer);
+	      $scope.shareFile(answer, item);
 	    }, function() {
 				$mdToast.show(
 					$mdToast.simple()
@@ -295,9 +311,7 @@
 		};
 
 		var update = function (item){
-
 			$scope.getChildren(item.id);
-
 		};
 
 	});
@@ -324,6 +338,12 @@ function DialogController($scope, $mdDialog) {
     };
 
     $scope.answer = function() {
+			if ($scope.checked) {
+				$scope.checked = 'rw';
+			} else {
+				$scope.checked = 'r';
+			}
+
 			var answer = { email: $('#friend-email').val(), permission: $scope.checked };
       $mdDialog.hide(answer);
     };
