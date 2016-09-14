@@ -1,8 +1,10 @@
 class PoliciesController < ApplicationController
-  def create
-    @policy = Policy.new
+  protect_from_forgery except: :create
 
-    if @policy.save(get_request_params)
+  def create
+    @policy = Policy.new(get_request_params)
+
+    if @policy.save
       render status: 201,
              json: {
                info: "Policy created",

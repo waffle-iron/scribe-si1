@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   end
 
   def create_default_tree(user)
-    @folder = Folder.create(name: DEFAULT_FOLDER_NAME, parent_folder: nil, user: user)
+    @folder = Folder.create(name: DEFAULT_FOLDER_NAME, user: user)
     @folder.save(:validate => false)
     @document = Document.create(name: DEFAULT_DOCUMENT_NAME, content: DEFAULT_DOCUMENT_CONTENT, extension: DEFAULT_DOCUMENT_EXTENSION, folder: @folder, user: user)
     @document.save

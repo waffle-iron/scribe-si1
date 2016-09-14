@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+  protect_from_forgery except: :create
   require 'json'
 
   def user_notifications
@@ -11,9 +12,9 @@ class NotificationsController < ApplicationController
   end
 
   def create
-    @notification = Notification.new
+    @notification = Notification.new(get_request_params)
 
-    if @notification.save(get_request_params)
+    if @notification.save
       render status: 201,
              json: {
                info: "Notification created",

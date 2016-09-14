@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   require 'json'
+  before_action :is_logged_in?, only: [:edit]
   layout 'editor', only: [:new, :edit]
 
   def index
@@ -19,9 +20,6 @@ class DocumentsController < ApplicationController
         render :json => @documents.to_json
       }
     end
-  end
-
-  def new
   end
 
   def show
@@ -52,9 +50,6 @@ class DocumentsController < ApplicationController
                msg: "A extensão que você escolheu é inválida :("
              } if !valid_extension?(@document.extension)
     end
-  end
-
-  def delete
   end
 
   def edit
