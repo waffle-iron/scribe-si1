@@ -7,10 +7,8 @@
 		<i class="material-icons" ng-if="!showArrow($index)">keyboard_arrow_right</i>
 	</span>
 </div>
-
 <!-- container do drive -->
 <div id="drive" class="panel">
-
 	<!-- header da lista de arquivos -->
 	<span class="mdl-grid drive-item drive-item-header">
 		<span ng-repeat="property in gridHeaderDrive" class="mdl-cell mdl-cell--{{ property.col }}-col">
@@ -37,9 +35,7 @@
 				</a>
 		</span>
 	</span>
-
 </div>
-
 <div class="mdl-button__footer">
 	<button class="mdl-button mdl-button--fab mdl-button--primary mdl-button_ofleft" ng-click="createFileDialog($event)">
   	<i class="material-icons">note_add</i>

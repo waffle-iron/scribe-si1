@@ -226,8 +226,8 @@
 
 			$scope.createFolderDialog = function(ev) {
 		    var confirm = $mdDialog.prompt()
-		      .title('Criar pasta')
-		      .textContent('A pasta será criada dentro da pasta ' + $scope.currentFolder.name)
+		      .title('Nova pasta')
+		      .textContent('Criar uma pasta em ' + $scope.currentFolder.name)
 		      .placeholder('Nome da pasta')
 		      .ariaLabel('Nome da pasta')
 		      .targetEvent(ev)
@@ -239,7 +239,7 @@
 				}, function() {
 					$mdToast.show(
 						$mdToast.simple()
-							.textContent("Não criou nenhuma pasta dentro de " + $scope.currentFolder.name)
+							.textContent("Não criou nenhuma pasta em " + $scope.currentFolder.name)
 							.position("top right")
 							.hideDelay(3000)
 					);
@@ -248,8 +248,8 @@
 
 		$scope.createFileDialog = function(ev) {
 			var confirm = $mdDialog.prompt()
-				.title('Criar arquivo')
-				.textContent('Criar um arquivo dentro da pasta ' + $scope.currentFolder.name)
+				.title('Novo arquivo')
+				.textContent('Criar um arquivo em' + $scope.currentFolder.name)
 				.placeholder('Documento sem título')
 				.ariaLabel('Documento sem título')
 				.targetEvent(ev)
@@ -261,7 +261,7 @@
 			}, function() {
 				$mdToast.show(
 		      $mdToast.simple()
-		        .textContent('Não criou nenhum arquivo dentro de ' + $scope.currentFolder.name)
+		        .textContent('Não criou nenhum arquivo em ' + $scope.currentFolder.name)
 		        .position("top right")
 		        .hideDelay(3000)
 		    );
@@ -290,9 +290,9 @@
 
 		$scope.renameItemDialog = function(ev, item) {
 			var confirm = $mdDialog.prompt()
-				.title('Renomear item')
-				.textContent('Renomear o item ' + item.name)
-				.placeholder('Nome do item')
+				.title('Renomear')
+				.textContent(item.name + ' terá seu nome alterado.')
+				.placeholder('Insira o novo nome')
 				.ariaLabel('Nome do item')
 				.targetEvent(ev)
 				.ok('Renomear')
@@ -303,7 +303,7 @@
 			}, function() {
 				$mdToast.show(
 		      $mdToast.simple()
-		        .textContent('O arquivo ' + item.name + ' não foi renomeado.')
+		        .textContent(item.name + ' não foi renomeado(a).')
 		        .position("top right")
 		        .hideDelay(3000)
 		    );
