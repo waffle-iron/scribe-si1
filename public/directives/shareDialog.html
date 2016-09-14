@@ -1,14 +1,10 @@
 <md-dialog aria-label="Compartilhar">
   <form>
-    <h5 class="dialog-title">Compartilhamento de arquivos entre usuários</h5>
+    <h5 class="dialog-title">Compartilhar</h5>
     <md-dialog-content>
       <div class="md-dialog-content dialog-box">
         <p>
-          Para realizar o compartilhamento, é necessário informar o e-mail da pessoa com a qual você deseja compartilhar.
-
-        </p>
-        <p>
-          Marque as permissões desejadas e confirme o compartilhamento! :)
+          Insira o e-mail da pessoa com quem deseja compartilhar o arquivo.
         </p>
 
         <md-input-container class="md-block">
@@ -20,11 +16,11 @@
         <md-divider></md-divider>
         <md-list>
           <md-list-item>
-            <p>Marque esta opção para permitir que o usuário Edite o seu documento</p>
+            <p>Pode editar o documento</p>
             <md-checkbox ng-click="clickCheckBox()" ></md-checkbox>
           </md-list-item>
           <md-list-item>
-            <p>Esta opção informa que o usuário apenas pode Visualizar o seu documento</p>
+            <p>Pode visualizar o documento</p>
             <md-checkbox ng-click="" ng-disabled="true" ng-checked="true"></md-checkbox>
           </md-list-item>
         </md-list>
