@@ -1,12 +1,17 @@
 class NotificationsController < ApplicationController
-  protect_from_forgery except: :create
   require 'json'
 
-  def user_notifications
-    notifications = User.find(params[:current_user_id]).notifications
+  def find_by_user
+    notifications = Notification.where(to_user_id: params[:user_id])
+
+    notifications.each do |notification|
+      sender = User.find(notification.from_user_id)
+      notification.sender_email = sender.email
+    end
+
     respond_to do |format|
       format.json {
-        render :json => notifications.to_json
+        render :json => notifications.to_json(:methods => [:sender_email])
       }
     end
   end

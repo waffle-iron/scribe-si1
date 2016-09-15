@@ -10,6 +10,15 @@ class PoliciesController < ApplicationController
     @policy = Policy.create(user_id: user_id, document_id: document_id, permission: permission)
 
     if @policy.save
+      sender = User.find(session[:current_user_id])
+      receiver = User.find(user_id)
+      document = Document.find(document_id)
+      document_policy = Policy.find_by(document_id: document.id, user_id: receiver.id)
+      message = 'Agora você pode ' + translate_policy(document_policy.permission) + ' meu documento "' + document.name + '.' + document.extension + '"'
+
+      share_notification = Notification.create(from_user_id: sender.id, to_user_id: receiver.id, message: message)
+      share_notification.save
+
       render status: 201,
              json: {
                info: "Policy created",
@@ -50,5 +59,13 @@ class PoliciesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def translate_policy(raw_permission)
+    if raw_permission == 'rw'
+      permission = 'editar'
+    else
+      permission = 'visualizar'
+    end
   end
 end
