@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'documents/children/:folder_id' => 'documents#find_children'
   get 'documents/shared/:user_id' => 'documents#find_shared'
   get 'folders/children/:folder_id' => 'folders#find_children'
+  get 'policies/document/:document_id' => 'policies#find_document_policy'
 
   resources :notifications
   resources :policies

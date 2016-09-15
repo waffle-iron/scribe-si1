@@ -1,5 +1,5 @@
 class PoliciesController < ApplicationController
-  protect_from_forgery except: :create
+  require 'json'
 
   def create
     policy = params.require(:policy)
@@ -23,6 +23,26 @@ class PoliciesController < ApplicationController
                success: false,
                msg: "O arquvo não pôde ser compartilhado, por favor tente novamente. :("
              }
+    end
+  end
+
+  def show
+    policy = Policy.find(params[:id])
+
+    respond_to do |format|
+      format.json {
+        render :json => policy.to_json
+      }
+    end
+  end
+
+  def find_document_policy
+    policies = Policy.find_by(document_id: params[:document_id])
+
+    respond_to do |format|
+      format.json {
+        render :json => policies.to_json
+      }
     end
   end
 

@@ -1,6 +1,6 @@
 (function () {
 	angular.module('ScribeApp')
-	.controller('shareController', function ($scope, $cookies, $timeout, share) {
+	.controller('shareController', function ($scope, $cookies, $timeout, share, httpToolsService) {
 		var current_user_id = $cookies.getObject('current_user_id');
 
 		share.getSharedFiles(current_user_id).then(
@@ -22,6 +22,11 @@
 				console.log(err);
 			}
 		);
+
+		$scope.openDocument = function(document) {
+			$cookies.put("current_document", document.id);
+			httpToolsService.redirect('/documents/' + document.id + '/edit/');
+		};
 
 		$scope.gridHeaderShare = [
 			{ name: 'Nome', icon: 'sort_by_alpha', col: 2 },

@@ -1,15 +1,41 @@
 (function () {
 	angular.module('ScribeApp').controller('editorController', function ($scope, $cookies, $timeout, $sce, $mdToast, $mdDialog, httpToolsService) {
 
-		$scope.document_id = $cookies.getObject('current_document');
+		var currentUserID = $cookies.getObject('current_user_id');
+		var pathName = window.location.pathname;
+
+		$scope.document_id = pathName.split('/')[2];
+
+		var isDocumentShared = function(document) {
+			return document.user_id !== currentUserID;
+		};
 
     httpToolsService.request('GET', '/documents/' + $scope.document_id + '.json', '').then(
 			function (res) {
 				$timeout(function () {
-					$scope.document = res.data;
+					var currentDocument = res.data;
+
+					$scope.document = currentDocument;
 					$scope.fileContent = $sce.trustAsHtml(res.data.content);
 				}, 10);
+
+				// if current document is shared, verify current user's permission to that file
+				if (isDocumentShared(res.data)) {
+					httpToolsService.request('GET', '/policies/document/' + $scope.document_id + '.json', '').then(
+						function (res) {
+							var documentPolicy = res.data;
+							$scope.viewOnly = (documentPolicy.permission === 'r');
+
+							if ($scope.viewOnly) {
+								tinymce.activeEditor.setMode('readonly');
+							}
+						},
+
+						function (err) { console.log(err); }
+					)
+				}
 			},
+
 			function (err) { console.log(err); }
 		);
 

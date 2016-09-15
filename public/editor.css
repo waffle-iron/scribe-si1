@@ -2,6 +2,10 @@ body {
   background-color: #eeeeee;
 }
 
+button[disabled], input[disabled] {
+  cursor: not-allowed !important;
+}
+
 #header {
   background-color: #262b36;
   color: #bdc3d1;

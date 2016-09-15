@@ -4,8 +4,6 @@
 		// the user's root folder id, used to make http requests to the server.
 		var current_root_folder_id = $cookies.getObject('current_root_folder_id');
 
-		$cookies.remove('current_document');
-
 		// sets $scope.contents
 		$scope.getChildren = function (current_root_folder_id) {
 			files.getChildrenFolders(current_root_folder_id).then(
@@ -68,7 +66,6 @@
 		// action() when a file or folder is clicked on the list.
 		$scope.fileAction = function (item) {
 			if (item.type === 'file') {
-				$cookies.put("current_document", item.id);
 				httpToolsService.redirect('/documents/' + item.id + '/edit/');
 				return;
 			} else {
@@ -152,9 +149,9 @@
 							}, 50);
 			 			}
 			 		},
+
 					function (err) { console.log(err) }
 				);
-
 			};
 
 			$scope.renameItem = function(newName, item){
