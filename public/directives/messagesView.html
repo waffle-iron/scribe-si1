@@ -1,9 +1,10 @@
 <a ng-repeat="message in messages" class="message">
     <div class="message-header">
-        <span class="sender">De: {{ message.from_user_id }}</span>
-        <span class="date">{{ message.created_at }}</span>
+        <span class="sender">De: {{ message.sender_name }}</span>
+        <span class="date">{{ message.updated_at | date}}</span>
     </div>
     <div class="message-body">
         <span>{{ message.message }}</span>
     </div>
+    <md-tooltip md-direction="right">Enviado por: {{ message.sender_email }}</mid-tooltip>
 </a>

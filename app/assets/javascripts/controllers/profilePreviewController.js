@@ -16,6 +16,9 @@
 		];
 
 		$scope.logout = function() {
+			$cookies.remove('current_user_id');
+			$cookies.remove('current_document');
+			$cookies.remove('current_root_folder_id');
 			httpToolsService.redirect('/logout');
 		};
 

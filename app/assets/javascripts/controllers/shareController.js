@@ -27,19 +27,19 @@
 			httpToolsService.redirect('/documents/' + document.id + '/edit/');
 		};
 
-		$scope.gridHeaderShare = [
-			{ name: 'Nome', icon: 'sort_by_alpha', col: 2 },
-			{ name: 'Proprietário', icon: 'person', col: 3 },
-			{ name: 'Última Modificação', icon: 'access_time', col: 4 },
-			{ name: 'Permissões', icon: 'info_outline', col: 3 }
-		];
-
-		$scope.getIcon = function (item) {
-			if (item.type === 'file')
-				return 'insert_drive_file';
+		$scope.getPermission = function(item) {
+			if (item.permission === 'Editar')
+				return 'edit';
 			else
-				return 'folder';
+				return 'remove_red_eye';
 		};
 
+		$scope.gridHeaderShare = [
+			{ name: 'Nome', icon: 'sort_by_alpha', col: 6 },
+			{ name: 'Proprietário', icon: 'person', col: 3 },
+			{ name: 'Última Modificação', icon: 'access_time', col: 2 },
+			{ name: 'Permissões', icon: 'info_outline', col: 1 }
+		];
+		
 	});
 })();

@@ -20,13 +20,17 @@
 
 	<!-- lista de arquivos dentro da pasta atual sendo visitada -->
 	<span class="mdl-grid drive-item" ng-repeat="item in sharedContents track by $index">
-		<span class="mdl-cell mdl-cell--2-col" ng-click="openDocument(item)">
+		<span class="mdl-cell mdl-cell--6-col" ng-click="openDocument(item)">
 			<i class="material-icons">insert_drive_file</i>
 			{{ item.name }}
 		</span>
 		<span class="mdl-cell mdl-cell--3-col">{{ item.owner }}</span>
-		<span class="mdl-cell mdl-cell--4-col">{{ item.created_at | date }}</span>
-		<span class="mdl-cell mdl-cell--3-col">{{ item.permission }}</span>
+		<span class="mdl-cell mdl-cell--2-col">{{ item.created_at | date }}</span>
+		<span class="mdl-cell mdl-cell--1-col">
+			<i class="material-icons"> {{ getPermission(item) }}
+				<md-tooltip md-direction="right"> {{item.permission}} Arquivo </md-tooltip>
+			</i>
+		</span>
 	</span>
 
 </div>

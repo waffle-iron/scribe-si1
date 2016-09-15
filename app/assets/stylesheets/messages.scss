@@ -7,14 +7,16 @@
 
     > .message-header {
         .sender, .date {
-            text-transform: uppercase;
             font-weight: 900;
             font-size: 0.9em;
             color: rgb(115,115,115);
         }
 
         .sender { float: left; }
-        .date { float: right }
+        .date {
+          float: right;
+          text-transform: uppercase;
+        }
     }
 
     > .message-body {

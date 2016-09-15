@@ -4,6 +4,11 @@
 		// the user's root folder id, used to make http requests to the server.
 		var current_root_folder_id = $cookies.getObject('current_root_folder_id');
 
+		$scope.currentUser = user.getUserData($cookies.getObject('current_user_id')).then(
+			function (res) { $scope.currentUser = res.data; },
+			function (err) { console.log(err); }
+		);
+
 		// sets $scope.contents
 		$scope.getChildren = function (current_root_folder_id) {
 			files.getChildrenFolders(current_root_folder_id).then(
@@ -18,7 +23,6 @@
 							for (var i = 0; i < contents.length; i++)
 								contents[i].type = 'file';
 							$scope.contents = $scope.contents.concat(contents);
-							console.log($scope.contents);
 						},
 						function (err) { console.log(err); }
 					);
@@ -110,7 +114,7 @@
 					folder: {
 						name: folderName,
 						parent_folder_id: $scope.currentFolder.id,
-						user_id: $cookies.getObject('current_user_id')
+						user_id: $scope.currentUser.id
 					}
 				};
 
@@ -137,7 +141,7 @@
 						extension: 'txt',
 						content: 'Este é seu novo arquivo! Para editá-lo, use o botão direito do mouse ou selecione o texto que deseja alterar :-)',
 						folder_id: $scope.currentFolder.id,
-						user_id: $cookies.getObject('current_user_id')
+						user_id: $scope.currentUser.id
 					}
 				};
 
@@ -201,7 +205,6 @@
 
 			$scope.shareFile = function (shareObject, item) {
 				var token = $('meta[name=csrf-token]').attr("content");
-				console.log(shareObject);
 
 				var request_body = {
 					authenticity_token: token,
@@ -246,7 +249,7 @@
 		$scope.createFileDialog = function(ev) {
 			var confirm = $mdDialog.prompt()
 				.title('Novo arquivo')
-				.textContent('Criar um arquivo em' + $scope.currentFolder.name)
+				.textContent('Criar um arquivo em ' + $scope.currentFolder.name)
 				.placeholder('Documento sem título')
 				.ariaLabel('Documento sem título')
 				.targetEvent(ev)
@@ -274,7 +277,19 @@
 				clickOutsideToClose:false,
 			})
 			.then(function(answer) {
-	      $scope.shareFile(answer, item);
+				var texto = "";
+				if (answer.email === $scope.currentUser.email){
+					texto = "Não é possível compartilhar um arquivo consigo mesmo. :(";
+				} else {
+					texto = "Arquivo compartilhado com " + answer.email + "! :)";
+      		$scope.shareFile(answer, item);
+				}
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent(texto)
+						.position("top right")
+						.hideDelay(3000)
+				);
 	    }, function() {
 				$mdToast.show(
 					$mdToast.simple()

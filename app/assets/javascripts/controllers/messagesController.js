@@ -1,30 +1,18 @@
 (function () {
-	angular.module('ScribeApp').controller('messagesController', function ($scope) {
+	angular.module('ScribeApp').controller('messagesController', function ($scope, $cookies, httpToolsService) {
 
-		$scope.messages = [
-            {
-                from_user_id: 'Chico',
-                message: 'Something...',
-                created_at: '22 Jun 2016'
-            },
-            {
-                from_user_id: 'Cintra',
-                message: 'Tiago melhor professor',
-                created_at: '22 Jun 2016'
-            },
-            {
-                from_user_id: 'Doge',
-                message: 'Doge > gato',
-                created_at: '23 Jun 2016'
-            },
-            {
-                from_user_id: 'Gato',
-                message: 'Gato > doge',
-                created_at: '23 Jun 2016'
-            }
-        ];
+		var current_user_id = $cookies.getObject('current_user_id');
 
-        
+		$scope.messages = [];
+
+		httpToolsService.request('GET', '/notifications/user/' + current_user_id + ".json", '').then(
+			function (res) {
+				var mensagens = res.data;
+				$scope.messages = mensagens;
+				console.log($scope.messages);
+	 		},
+			function (err) { console.log(err) }
+		);
 
 	});
 })();
