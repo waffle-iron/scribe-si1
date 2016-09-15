@@ -7,11 +7,13 @@ class NotificationsController < ApplicationController
     notifications.each do |notification|
       sender = User.find(notification.from_user_id)
       notification.sender_email = sender.email
+      notification.sender_name = sender.first_name + ' ' + sender.last_name
+      notification.user
     end
 
     respond_to do |format|
       format.json {
-        render :json => notifications.to_json(:methods => [:sender_email])
+        render :json => notifications.to_json(:methods => [:sender_email, :sender_name])
       }
     end
   end

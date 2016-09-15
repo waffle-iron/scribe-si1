@@ -24,7 +24,6 @@
 		);
 
 		$scope.openDocument = function(document) {
-			$cookies.put("current_document", document.id);
 			httpToolsService.redirect('/documents/' + document.id + '/edit/');
 		};
 
