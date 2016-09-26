@@ -7,7 +7,8 @@
 		// opções do menu principal
 		$scope.links = [
 			{ name: 'Meu Drive', 		icon: 'folder' },
-			{ name: 'Compartilhados',	icon: 'folder_shared' }
+			{ name: 'Compartilhados',	icon: 'folder_shared' },
+			{ name: 'Excluídos', icon: 'delete'}
 		];
 
 		$scope.setMainTab = function (index) {

@@ -18,7 +18,7 @@
 	</span>
 
 	<!-- lista de arquivos dentro da pasta atual sendo visitada -->
-	<span class="mdl-grid drive-item" ng-repeat="item in contents track by $index">
+	<span class="mdl-grid drive-item" ng-repeat="item in contents track by $index" multiple-selection-item ng-class="{'selecting': isSelecting ,'selected': isSelected}">
 		<span class="mdl-cell mdl-cell--5-col" ng-click="fileAction(item)">
 			<i class="material-icons">{{ getIcon(item) }}</i>
 			{{ item.name }}
@@ -32,6 +32,10 @@
 				<a ng-click="renameItemDialog($event, item)" >
 					<span ><i class="material-icons">edit</i></span>
 					<md-tooltip>Renomear</md-tooltip>
+				</a>
+				<a ng-click="deleteFileDialog($event, item)" ng-show="item.type === 'file'">
+					<span><i class="material-icons">delete</i></span>
+					<md-tooltip>Mover para Lixeira</md-tooltip>
 				</a>
 		</span>
 	</span>

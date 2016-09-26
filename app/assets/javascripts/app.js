@@ -1,3 +1,3 @@
 (function () {
-  angular.module('ScribeApp', ['ngCookies', 'ngMaterial']);
+  angular.module('ScribeApp', ['ngCookies', 'ngMaterial', 'multipleSelection']);
 })();

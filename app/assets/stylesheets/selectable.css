@@ -1,0 +1,14 @@
+.select-helper {
+    position: absolute;
+    border: 1px dashed #5e7699;
+    background: #5e7699;
+    opacity: 0.3;
+    z-index: 9999;
+}
+
+.selected {
+    background-color: #c4dcff !important;
+}
+.selecting {
+    background-color: #d7e7ff !important;
+}
