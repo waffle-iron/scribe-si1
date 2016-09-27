@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/gabrielguim/scribe-si1.png?label=ready&title=Ready)](https://waffle.io/gabrielguim/scribe-si1)
 Aos monitores: Por favor, se possível, aceitem nossos commits até às 4:30. Mais tarde justificaremos o atraso mais detalhadamente (tem uma breve justificativa na documentação). Abraços.
 
 ## Scribe
