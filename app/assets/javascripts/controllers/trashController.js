@@ -2,6 +2,8 @@
 	angular.module('ScribeApp')
 	.controller('trashController', function ($scope, trash, $mdDialog, $mdToast) {
 
+    $scope.selectedItems = [];
+
 		$scope.gridHeaderTrash = [
 			{ name: 'Nome', icon: 'sort_by_alpha', col: 7 },
 			{ name: 'Última Modificação', icon: 'access_time', col: 5 }
@@ -10,23 +12,31 @@
 		$scope.eoq = [ {
 			name: "teste 1",
 			updated_at: "12312",
-			checked: false
 		}, {
 			name: "teste 2",
 			updated_at: "12312",
-			checked: false
 		}, {
 			name: "teste 3",
 			updated_at: "12312",
-			checked: false
 		}];
+
+    $scope.setProperty = function(){
+      var deletedItems = $scope.getDeletedFiles();
+      for (var i = 0; i < deletedItems.length; i++) {
+        deletedItems[i]['selected'] = false;
+      }
+    };
+
+    $scope.selectItem = function (item){
+      item.selected = !item.selected;
+    };
 
     $scope.deleteFileDialog = function (ev, file){
       var confirm = $mdDialog.confirm()
         .title('Excluir arquivo')
         .textContent('Você realmente deseja mover o item ' + name + ' para a lixeira?')
+        .ariaLabel('Excluir Arquivo')
         .targetEvent(ev)
-        .ariaLabel('delete_file')
         .ok('Deletar')
         .cancel('Cancelar');
 
@@ -35,7 +45,7 @@
       }, function() {
 
       });
-    }
+    };
 
 		$scope.deleteFile = function(file){
 
@@ -56,8 +66,12 @@
 		};
 
 		$scope.getDeletedFiles = function () {
-			 return $scope.eoq;
+      return $scope.eoq;
 		};
+
+    $scope.deleteFiles = function() {
+      console.log($scope.selectedItems);
+    }
 
 	});
 })();

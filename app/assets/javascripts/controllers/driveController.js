@@ -69,13 +69,20 @@
 
 		// action() when a file or folder is clicked on the list.
 		$scope.fileAction = function (item) {
-			if (item.type === 'file') {
-				httpToolsService.redirect('/documents/' + item.id + '/edit/');
-				return;
+
+
+			if (item.type === 'file'){
+				if (item.selected){
+					httpToolsService.redirect('/documents/' + item.id + '/edit/');
+					return;
+				}
 			} else {
 				// sets the current folder and contents
 				$scope.setCurrentFolder(item);
 			}
+
+			$scope.singleItem(item);
+
 		};
 
 		// misc function to get the icon based on the file's type.
@@ -324,6 +331,22 @@
 
 		var update = function (item){
 			$scope.getChildren(item.id);
+		};
+
+		$scope.setProperty = function(){
+			var files = $scope.contents;
+			for (var i = 0; i < files.length; i++) {
+				files[i]['selected'] = false;
+			}
+		};
+
+		$scope.singleItem = function(item){
+			var allFiles = $scope.contents;
+			for (var i = 0; i < allFiles.length; i++) {
+				allFiles[i].selected = false;
+			}
+
+			item.selected = !item.selected;
 		};
 
 	});

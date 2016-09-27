@@ -9,7 +9,6 @@
 			function (res) {
 				var mensagens = res.data;
 				$scope.messages = mensagens;
-				console.log($scope.messages);
 	 		},
 			function (err) { console.log(err) }
 		);
